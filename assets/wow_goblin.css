@@ -1,0 +1,62 @@
+/* WoW Goblin Theme - Bilgewater Cartel */
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Teko:wght@500;700&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+/* Global App Background - Greasy Vault Steel */
+[data-testid="stAppViewContainer"] {
+    background-color: #1c1c1a; /* Oiled steel */
+    background-image: 
+        /* Vault door rivets and diamond plate */
+        radial-gradient(#000000 15%, transparent 16%),
+        radial-gradient(#000000 15%, transparent 16%),
+        /* Explosive heat glow */
+        radial-gradient(ellipse at 50% 10%, rgba(255, 69, 0, 0.15) 0%, transparent 60%);
+    background-size: 30px 30px, 30px 30px, 100% 100%;
+    background-position: 0 0, 15px 15px, 0 0;
+    background-attachment: fixed;
+    color: #d1d1d1; 
+    font-family: 'Teko', sans-serif !important;
+    font-size: 1.2rem;
+}
+
+/* Typography - Trade Prince Gold */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #ffd700 !important; /* Pure Gold */
+    font-family: 'Black Ops One', cursive !important; /* Heavy industrial */
+    text-shadow: 2px 2px 0px #000000, 0px 0px 15px rgba(255, 215, 0, 0.6);
+    letter-spacing: 2px;
+}
+
+p, label, .stMarkdown { color: #ffd700 !important; }
+[data-testid="stSidebar"] { background-color: #141413; border-right: 4px solid #ff4500; } /* Explosive fuse red */
+
+/* Metric Cards - Safety Deposit Boxes */
+[data-testid="stMetric"] {
+    background-color: #262624;
+    border: 3px solid #ffd700; /* Solid gold bars */
+    border-radius: 2px; 
+    padding: 15px;
+    box-shadow: 4px 4px 0px #000000; /* Brutal industrial shadow */
+}
+
+[data-testid="stMetricValue"] { color: #32cd32; font-weight: 700; } /* Cash Green */
+[data-testid="stMetricDelta"] { color: #ffd700 !important; }
+
+/* Button - Rocket Barrage */
+.stButton > button {
+    background-color: #ff4500; /* Explosive Orange */
+    color: #ffffff !important;
+    border-radius: 0px;
+    border: 3px solid #000000;
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.2rem;
+    transition: all 0.1s;
+}
+
+.stButton > button:hover {
+    background-color: #ffd700; /* Flashes Gold */
+    color: #000000 !important;
+    border-color: #ff4500;
+    box-shadow: 0px 0px 25px rgba(255, 69, 0, 0.9);
+    transform: translate(2px, -2px); /* Recoil */
+}

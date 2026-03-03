@@ -1,0 +1,53 @@
+/* FFXIV Bard Theme - Wanderer's Minuet */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Raleway:wght@400;600&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #0c1f12; /* Gridanian Canopy */
+    background-image: 
+        /* Sweeping curved radial lines mimicking sheet music/wind arrows */
+        radial-gradient(ellipse at 0% 100%, rgba(136, 212, 158, 0.1) 0%, transparent 40%),
+        radial-gradient(ellipse at 100% 0%, rgba(255, 183, 3, 0.1) 0%, transparent 40%),
+        repeating-radial-gradient(ellipse at -20% 50%, transparent 0, transparent 40px, rgba(136, 212, 158, 0.05) 40px, rgba(136, 212, 158, 0.05) 42px);
+    background-attachment: fixed;
+    color: #e3f2e8; 
+    font-family: 'Raleway', sans-serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #ffb703 !important; /* Minuet Gold */
+    font-family: 'Great Vibes', cursive !important; /* Elegant, lyrical headers */
+    font-size: 2.8rem;
+    font-weight: 400;
+    text-shadow: 0px 0px 10px rgba(255, 183, 3, 0.3);
+}
+
+p, label, .stMarkdown { color: #e3f2e8 !important; }
+[data-testid="stSidebar"] { background-color: rgba(12, 31, 18, 0.9); border-right: 2px solid #88d49e; }
+
+[data-testid="stMetric"] {
+    background-color: rgba(20, 48, 30, 0.85);
+    border: 1px solid #38b000; 
+    border-radius: 12px; /* Soft wood curves */
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+[data-testid="stMetricValue"] { color: #ffffff; font-weight: 600; }
+[data-testid="stMetricDelta"] { color: #ffb703 !important; }
+
+.stButton > button {
+    background-color: #14301e;
+    color: #ffb703 !important;
+    border-radius: 25px; /* Fully rounded */
+    border: 1px solid #ffb703;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    background-color: #ffb703; 
+    color: #0c1f12 !important;
+    box-shadow: 0px 0px 20px rgba(255, 183, 3, 0.7);
+}

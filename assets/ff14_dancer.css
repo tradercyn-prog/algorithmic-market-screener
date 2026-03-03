@@ -1,0 +1,55 @@
+/* FFXIV Dancer Theme - Technical Finish */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500;700&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #2b0a1a; /* Deep Thavnairian Wine */
+    background-image: 
+        /* Massive overlapping Chakram rings */
+        radial-gradient(circle at 20% 80%, transparent 20%, rgba(255, 10, 84, 0.1) 21%, rgba(255, 10, 84, 0.1) 23%, transparent 24%),
+        radial-gradient(circle at 80% 20%, transparent 30%, rgba(255, 112, 150, 0.1) 31%, rgba(255, 112, 150, 0.1) 33%, transparent 34%),
+        /* Silken background glow */
+        linear-gradient(135deg, rgba(255, 10, 84, 0.05) 0%, transparent 50%, rgba(255, 112, 150, 0.05) 100%);
+    background-attachment: fixed;
+    color: #ffe6ee; 
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #ff0a54 !important; /* Standard Step Pink/Red */
+    font-family: 'Dancing Script', cursive !important;
+    font-size: 3rem;
+    text-shadow: 0px 0px 15px rgba(255, 10, 84, 0.5);
+}
+
+p, label, .stMarkdown { color: #ffe6ee !important; }
+[data-testid="stSidebar"] { background-color: rgba(43, 10, 26, 0.9); border-right: 3px solid #ff7096; }
+
+[data-testid="stMetric"] {
+    background-color: rgba(60, 15, 35, 0.85);
+    border: 2px solid #ff7096; 
+    border-radius: 50px; /* Completely rounded metric cards like Chakrams! */
+    padding: 15px 25px;
+    text-align: center; /* Center align data to fit the pill shape */
+    box-shadow: 0 5px 15px rgba(255, 10, 84, 0.15);
+}
+
+[data-testid="stMetricValue"] { color: #ffffff; font-weight: 700; }
+[data-testid="stMetricDelta"] { color: #ff0a54 !important; }
+
+.stButton > button {
+    background-color: #3c0f23;
+    color: #ff0a54 !important;
+    border-radius: 30px;
+    border: 2px solid #ff0a54;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    transition: all 0.3s ease-in-out;
+}
+
+.stButton > button:hover {
+    background-color: #ff0a54; 
+    color: #ffffff !important;
+    box-shadow: 0px 0px 25px rgba(255, 10, 84, 0.8);
+    transform: scale(1.05); /* Flourish */
+}

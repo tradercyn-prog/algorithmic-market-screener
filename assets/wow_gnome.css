@@ -1,0 +1,47 @@
+/* WoW Gnome Theme - Gnomeregan Tech */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #1d2b2b; /* Oiled machinery */
+    background-image: 
+        /* Cogwheel / Blueprint Grid */
+        repeating-linear-gradient(0deg, rgba(218, 165, 32, 0.05) 0px, transparent 1px, transparent 20px),
+        repeating-linear-gradient(90deg, rgba(218, 165, 32, 0.05) 0px, transparent 1px, transparent 20px),
+        /* Irradiated Coolant Glow */
+        radial-gradient(ellipse at 80% 90%, rgba(50, 205, 50, 0.15) 0%, transparent 60%);
+    background-attachment: fixed;
+    color: #cce0e0; 
+    font-family: 'Share Tech Mono', monospace !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #39ff14 !important; /* Neon Radioactive Green */
+    font-family: 'Share Tech Mono', monospace !important;
+    text-shadow: 0px 0px 10px rgba(57, 255, 20, 0.5);
+}
+
+[data-testid="stSidebar"] { background-color: #141f1f; border-right: 4px dashed #daa520; } /* Brass gear teeth */
+
+[data-testid="stMetric"] {
+    background-color: #263838;
+    border: 2px solid #daa520; /* Brass plating */
+    border-radius: 5px; 
+    padding: 15px;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.8), 0 5px 10px rgba(0,0,0,0.5);
+}
+
+[data-testid="stMetricValue"] { color: #39ff14; }
+[data-testid="stMetricDelta"] { color: #daa520 !important; }
+
+.stButton > button {
+    background-color: #daa520; /* Brass button */
+    color: #1d2b2b !important;
+    border-radius: 50px; /* Big red round button look */
+    border: 3px solid #263838;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 900;
+    transition: all 0.1s;
+}
+
+.stButton > button:hover { background-color: #39ff14; color: #000000 !important; border-color: #39ff14; transform: scale(0.95); /* Button presses IN */ }

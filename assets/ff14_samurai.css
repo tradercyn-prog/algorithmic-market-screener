@@ -1,0 +1,57 @@
+/* FFXIV Samurai Theme - Midare Setsugekka */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #e0e0e0; /* Traditional Washi Paper / Light Mode! */
+    background-image: 
+        /* The Katana Slash */
+        linear-gradient(105deg, transparent 49.5%, #b71c1c 49.5%, #b71c1c 50.5%, transparent 50.5%),
+        /* Ink wash fade at the bottom */
+        linear-gradient(to top, rgba(0, 0, 0, 0.1) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: #111111; 
+    font-family: 'Noto Serif JP', serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #b71c1c !important; /* Crimson Blood */
+    font-family: 'Noto Serif JP', serif !important;
+    font-weight: 900;
+}
+
+p, label, .stMarkdown { color: #111111 !important; font-family: 'Noto Serif JP', serif !important; font-weight: 700; }
+
+[data-testid="stSidebar"] {
+    background-color: #d6d6d6;
+    border-right: 4px solid #111111; /* Deep sumi-e ink */
+}
+
+[data-testid="stMetric"] {
+    background-color: #ffffff;
+    border: 2px solid #111111; 
+    border-left: 6px solid #b71c1c; /* Sen Gauge */
+    border-radius: 0px; 
+    padding: 15px;
+    box-shadow: 4px 4px 0px #111111; /* Hard drop shadow */
+}
+
+[data-testid="stMetricValue"] { color: #111111; font-weight: 900; }
+[data-testid="stMetricDelta"] { color: #b71c1c !important; }
+
+.stButton > button {
+    background-color: #111111;
+    color: #ffffff !important;
+    border-radius: 0px;
+    border: none;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    transition: all 0.2s;
+}
+
+.stButton > button:hover {
+    background-color: #b71c1c; 
+    color: #ffffff !important;
+    box-shadow: 6px 6px 0px #111111; /* Iaijutsu strike */
+    transform: translate(-2px, -2px);
+}

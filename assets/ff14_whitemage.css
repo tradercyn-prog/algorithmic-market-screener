@@ -1,0 +1,76 @@
+/* FFXIV White Mage Theme - Presence of Mind */
+
+/* Import elegant, flowing serif font */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap');
+
+#MainMenu, footer, header {visibility: hidden;}
+
+/* Global App Background - Twilight Twelveswood */
+[data-testid="stAppViewContainer"] {
+    background-color: #05100a; /* Deep forest shadow */
+    background-image: 
+        /* Soft, blooming healing magic (Medica II aura) */
+        radial-gradient(circle at 50% 10%, rgba(136, 242, 206, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(244, 186, 186, 0.1) 0%, transparent 40%); /* Faint Blood Lily red at bottom */
+    background-attachment: fixed;
+    color: #e8f8f2; /* Soft mint-white */
+    font-family: 'Cormorant Garamond', serif !important;
+}
+
+/* Typography - Elegant and Natural */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #88f2ce !important; /* Healing Mint */
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 700;
+    text-shadow: 0px 0px 10px rgba(136, 242, 206, 0.4);
+}
+
+p, label, .stMarkdown {
+    font-family: 'Cormorant Garamond', serif !important;
+    color: #e8f8f2 !important;
+    font-size: 1.1rem;
+}
+
+/* Sidebar Styling - Wood and Nature */
+[data-testid="stSidebar"] {
+    background-color: #030a06;
+    border-right: 2px solid #88f2ce; 
+    box-shadow: 2px 0px 15px rgba(136, 242, 206, 0.15);
+}
+
+/* Metric Cards - Carved Stone/Wood */
+[data-testid="stMetric"] {
+    background-color: rgba(10, 25, 15, 0.85);
+    border: 1px solid #2a523d; 
+    border-bottom: 3px solid #f4baba; /* Blood lily accent */
+    padding: 15px;
+    border-radius: 12px; /* Soft, organic curves */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    color: #ffffff; 
+}
+
+[data-testid="stMetricDelta"] {
+    color: #88f2ce !important; 
+}
+
+/* Button Styling - Holy / Glare */
+.stButton > button {
+    background-color: #05100a;
+    color: #88f2ce !important;
+    border-radius: 20px; /* Highly rounded, organic buttons */
+    border: 1px solid #88f2ce;
+    font-weight: 700;
+    font-family: 'Cormorant Garamond', serif;
+    transition: all 0.3s ease-in-out;
+}
+
+.stButton > button:hover {
+    background-color: #f8f9fa; /* Flashes pure white */
+    color: #05100a !important;
+    border-color: #ffffff;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
+}

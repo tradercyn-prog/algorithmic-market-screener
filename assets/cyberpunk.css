@@ -1,0 +1,100 @@
+/* Cyberpunk Neon Theme */
+
+/* 1. Import futuristic font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Global App Background - CSS Grid Overlay */
+[data-testid="stAppViewContainer"] {
+    background-color: #080808;
+    /* This creates a mathematically perfect neon cyan grid */
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
+    color: #E0E0E0;
+    font-family: 'Orbitron', sans-serif !important;
+}
+
+/* Typography Overrides */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #00F3FF !important; /* Neon Cyan */
+    font-family: 'Orbitron', sans-serif !important;
+    font-weight: 700;
+    text-shadow: 0px 0px 10px rgba(0, 243, 255, 0.5); /* Glowing text */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p, label, .stMarkdown {
+    font-family: 'Orbitron', sans-serif !important;
+    color: #E0E0E0 !important;
+}
+
+/* Sidebar Styling - Dark with Hot Pink Border */
+[data-testid="stSidebar"] {
+    background-color: rgba(10, 10, 12, 0.95); /* Slightly transparent */
+    border-right: 2px solid #FF003C; /* Hot Pink */
+    box-shadow: 2px 0px 15px rgba(255, 0, 60, 0.2);
+}
+
+/* Metric Cards (The Top Row) */
+[data-testid="stMetric"] {
+    background-color: rgba(15, 15, 20, 0.85);
+    border: 1px solid #FCEE0A; /* Cyberpunk Yellow */
+    border-left: 5px solid #FCEE0A; /* Thick accent line */
+    padding: 15px;
+    border-radius: 0px; 
+    box-shadow: 0 0 10px rgba(252, 238, 10, 0.15);
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    color: #FCEE0A;
+    text-shadow: 0px 0px 8px rgba(252, 238, 10, 0.6);
+}
+
+[data-testid="stMetricDelta"] {
+    color: #00F3FF !important;
+}
+
+/* Button Styling - The Cyberpunk Yellow Action Button */
+.stButton > button {
+    background-color: #FCEE0A;
+    color: #000000 !important;
+    border-radius: 0px;
+    border: none;
+    font-weight: 900;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: all 0.1s ease-in-out;
+}
+
+/* Simulated Glitch Hover Effect */
+.stButton > button:hover {
+    background-color: #FF003C;
+    color: #FFFFFF !important;
+    box-shadow: -3px 3px 0px #00F3FF, 3px -3px 0px #FCEE0A;
+    transform: translate(1px, -1px);
+}
+
+/* Expander & Matrix Backgrounds - Translucent to let the grid show through */
+.streamlit-expanderHeader {
+    background-color: rgba(10, 10, 12, 0.9);
+    color: #00F3FF;
+    border: 1px solid #00F3FF;
+    border-radius: 0px;
+}
+
+[data-testid="stDataFrame"] {
+    background-color: rgba(10, 10, 12, 0.85);
+    border: 1px solid #00F3FF;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+}

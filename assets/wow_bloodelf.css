@@ -1,0 +1,50 @@
+/* WoW Blood Elf Theme - Sin'dorei */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Lora:ital,wght@0,500;1,500&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #2a0808; /* Silvermoon Crimson */
+    background-image: 
+        /* The Sunwell's Fel Magic */
+        radial-gradient(circle at 50% 100%, rgba(50, 205, 50, 0.15) 0%, transparent 60%),
+        /* Silken texture */
+        repeating-linear-gradient(45deg, rgba(218, 165, 32, 0.02) 0px, transparent 2px, transparent 15px);
+    background-attachment: fixed;
+    color: #fcf5e3; 
+    font-family: 'Lora', serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #daa520 !important; /* Silvermoon Gold */
+    font-family: 'Cinzel', serif !important;
+    text-shadow: 0px 0px 15px rgba(218, 165, 32, 0.4);
+}
+
+[data-testid="stSidebar"] { background-color: #1a0404; border-right: 2px solid #32cd32; } /* Fel-green border */
+
+[data-testid="stMetric"] {
+    background-color: #3d0c0c;
+    border: 1px solid #daa520; 
+    border-radius: 12px 0px 12px 0px; /* Elegant, sharp elven geometry */
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(50, 205, 50, 0.1);
+}
+
+[data-testid="stMetricValue"] { color: #ffffff; }
+[data-testid="stMetricDelta"] { color: #32cd32 !important; } /* Fel Green */
+
+.stButton > button {
+    background-color: #1a0404;
+    color: #daa520 !important;
+    border-radius: 12px 0px 12px 0px;
+    border: 1px solid #daa520;
+    font-family: 'Cinzel', serif;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    background-color: #32cd32; /* Mana Tap */
+    color: #000000 !important;
+    border-color: #32cd32;
+    box-shadow: 0px 0px 20px rgba(50, 205, 50, 0.7);
+}

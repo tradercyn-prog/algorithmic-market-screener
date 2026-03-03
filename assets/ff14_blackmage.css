@@ -1,0 +1,101 @@
+/* FFXIV Black Mage Theme */
+
+/* 1. Import a high-fantasy serif font */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&display=swap');
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Global App Background - The Void & Ley Lines */
+[data-testid="stAppViewContainer"] {
+    background-color: #05010a; /* Deeper void black */
+    background-image: 
+        /* 1. Inner Ley Line Core */
+        radial-gradient(circle at 50% 90%, rgba(123, 44, 191, 0.25) 0%, transparent 15%),
+        /* 2. Concentric Arcane Rings */
+        repeating-radial-gradient(circle at 50% 90%, rgba(157, 78, 221, 0.1) 0, rgba(157, 78, 221, 0.1) 2px, transparent 2px, transparent 50px),
+        /* 3. Astral Fire ambient glow at the top */
+        linear-gradient(to bottom, rgba(255, 69, 0, 0.05) 0%, transparent 30%),
+        /* 4. Umbral Ice ambient glow at the bottom */
+        linear-gradient(to top, rgba(0, 204, 255, 0.05) 0%, transparent 30%);
+    background-attachment: fixed;
+    color: #E2D8F0; 
+    font-family: 'Cinzel', serif !important;
+}
+
+/* Typography Overrides - Astral Fire Headers */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #FF4500 !important; /* Astral Fire Orange/Red */
+    font-family: 'Cinzel', serif !important;
+    font-weight: 700;
+    text-shadow: 0px 0px 15px rgba(255, 69, 0, 0.4);
+    letter-spacing: 1px;
+}
+
+p, label, .stMarkdown {
+    font-family: 'Cinzel', serif !important;
+    color: #E2D8F0 !important;
+}
+
+/* Sidebar Styling - Umbral Ice borders */
+[data-testid="stSidebar"] {
+    background-color: #12081A;
+    border-right: 2px solid #00CCFF; /* Umbral Ice Cyan */
+    box-shadow: 2px 0px 15px rgba(0, 204, 255, 0.15);
+}
+
+/* Metric Cards (The Top Row) */
+[data-testid="stMetric"] {
+    background-color: #12081A;
+    border: 1px solid #7B2CBF; /* Ley Lines Purple */
+    border-top: 4px solid #FF4500; /* Fire accent on top */
+    padding: 15px;
+    border-radius: 4px; 
+    box-shadow: 0 4px 12px rgba(123, 44, 191, 0.2);
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    color: #FF4500;
+    font-weight: 900;
+    text-shadow: 0px 0px 10px rgba(255, 69, 0, 0.3);
+}
+
+[data-testid="stMetricDelta"] {
+    color: #00CCFF !important; /* Ice blue for the delta */
+}
+
+/* Button Styling - The Flare Button */
+.stButton > button {
+    background-color: #3C096C; /* Deep Arcane Purple */
+    color: #FFFFFF !important;
+    border-radius: 4px;
+    border: 1px solid #9D4EDD;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Ley Lines Hover Effect */
+.stButton > button:hover {
+    background-color: #FF4500; /* Turns to Fire */
+    color: #FFFFFF !important;
+    border-color: #FF4500;
+    box-shadow: 0px 0px 20px rgba(255, 69, 0, 0.6);
+}
+
+/* Expander & Matrix */
+.streamlit-expanderHeader {
+    background-color: #12081A;
+    color: #FF4500;
+    border: 1px solid #7B2CBF;
+    border-radius: 4px;
+}
+
+[data-testid="stDataFrame"] {
+    background-color: #12081A;
+    border: 1px solid #7B2CBF;
+}

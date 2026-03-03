@@ -1,0 +1,103 @@
+/* FFXIV Summoner Theme - Arcane Geometry */
+
+/* Import runic/allagan style font */
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@400;600;700&display=swap');
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Global App Background - The Summoning Circle */
+[data-testid="stAppViewContainer"] {
+    background-color: #030d14; /* Deep Abyss / Bahamut Blue */
+    background-image: 
+        /* 1. Inner glowing teal core */
+        radial-gradient(circle at 50% 50%, rgba(26, 188, 156, 0.15) 0%, transparent 40%),
+        /* 2. Radiating Phoenix-gold arcane lines */
+        repeating-conic-gradient(from 0deg at 50% 50%, rgba(243, 156, 18, 0.04) 0deg, rgba(243, 156, 18, 0.04) 1deg, transparent 1deg, transparent 12deg),
+        /* 3. Concentric Arcanist summoning rings */
+        repeating-radial-gradient(circle at 50% 50%, rgba(26, 188, 156, 0.12) 0, rgba(26, 188, 156, 0.12) 2px, transparent 2px, transparent 80px);
+    background-attachment: fixed;
+    color: #d1f2eb; /* Pale mint white */
+    font-family: 'Jura', sans-serif !important;
+}
+
+/* Typography Overrides */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #1abc9c !important; /* Arcanist Teal */
+    font-family: 'Jura', sans-serif !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 10px rgba(26, 188, 156, 0.5);
+    letter-spacing: 2px;
+}
+
+p, label, .stMarkdown {
+    font-family: 'Jura', sans-serif !important;
+    color: #d1f2eb !important;
+}
+
+/* Sidebar Styling - Dark with Gold binding */
+[data-testid="stSidebar"] {
+    background-color: rgba(3, 13, 20, 0.95); /* Slightly transparent to see rays */
+    border-right: 2px solid #f39c12; /* Phoenix Gold */
+    box-shadow: 2px 0px 20px rgba(243, 156, 18, 0.15);
+}
+
+/* Metric Cards - Floating Arcane Tomes */
+[data-testid="stMetric"] {
+    background-color: rgba(10, 25, 35, 0.85); /* Translucent navy */
+    border: 1px solid #1abc9c;
+    border-left: 4px solid #f39c12; /* Summoning gauge accent */
+    padding: 15px;
+    border-radius: 8px 0px 8px 0px; /* Sharp, geometric corners */
+    box-shadow: 0 4px 15px rgba(26, 188, 156, 0.1);
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    color: #f39c12; /* Gold numbers */
+    font-weight: 700;
+    text-shadow: 0px 0px 8px rgba(243, 156, 18, 0.4);
+}
+
+[data-testid="stMetricDelta"] {
+    color: #1abc9c !important; 
+}
+
+/* Button Styling - Enter Dreadwyrm Trance */
+.stButton > button {
+    background-color: rgba(3, 13, 20, 0.8);
+    color: #1abc9c !important;
+    border-radius: 8px 0px 8px 0px;
+    border: 1px solid #1abc9c;
+    font-weight: 700;
+    font-family: 'Jura', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover - Summon Bahamut / Phoenix Fire */
+.stButton > button:hover {
+    background-color: #f39c12; 
+    color: #000000 !important;
+    border-color: #f39c12;
+    box-shadow: 0px 0px 20px rgba(243, 156, 18, 0.7);
+    transform: scale(1.02);
+}
+
+/* Expander & Matrix - Glassmorphism effect */
+.streamlit-expanderHeader {
+    background-color: rgba(10, 25, 35, 0.85);
+    color: #1abc9c;
+    border: 1px solid #1abc9c;
+    border-radius: 4px;
+}
+
+[data-testid="stDataFrame"] {
+    background-color: rgba(10, 25, 35, 0.75); /* Highly translucent to let the circle shine through */
+    border: 1px solid #1abc9c;
+    box-shadow: 0 0 20px rgba(26, 188, 156, 0.15);
+}

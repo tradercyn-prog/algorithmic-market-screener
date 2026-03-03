@@ -1,0 +1,48 @@
+/* WoW Dwarf Theme - Ironforge Anvil */
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Teko:wght@500;700&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #1a1614; /* Dark Iron */
+    background-image: 
+        /* The Great Forge Molten Lava */
+        radial-gradient(ellipse at 50% 110%, rgba(255, 69, 0, 0.4) 0%, rgba(139, 0, 0, 0.2) 40%, transparent 70%),
+        /* Hammered Iron Texture */
+        radial-gradient(rgba(255,255,255,0.03) 2px, transparent 3px);
+    background-size: 100% 100%, 15px 15px;
+    background-attachment: fixed;
+    color: #d1cfcd; 
+    font-family: 'Teko', sans-serif !important;
+    font-size: 1.2rem;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #ff8c00 !important; /* Molten Orange */
+    font-family: 'MedievalSharp', cursive !important;
+    text-shadow: 2px 2px 0px #000000, 0px 0px 15px rgba(255, 69, 0, 0.6);
+}
+
+[data-testid="stSidebar"] { background-color: #120e0d; border-right: 5px solid #ff4500; }
+
+[data-testid="stMetric"] {
+    background-color: #2b2320;
+    border: 3px solid #14110f; 
+    border-bottom: 5px solid #ff8c00; /* Heated metal edge */
+    border-radius: 0px; 
+    padding: 15px;
+    box-shadow: 0 8px 10px rgba(0,0,0,0.8);
+}
+
+[data-testid="stMetricValue"] { color: #ffffff; font-family: 'MedievalSharp', cursive !important; }
+[data-testid="stMetricDelta"] { color: #ff8c00 !important; }
+
+.stButton > button {
+    background-color: #1a1614;
+    color: #ff8c00 !important;
+    border-radius: 0px;
+    border: 3px solid #ff8c00;
+    font-family: 'MedievalSharp', cursive;
+    transition: all 0.15s;
+}
+
+.stButton > button:hover { background-color: #ff4500; color: #ffffff !important; transform: scale(1.03); }

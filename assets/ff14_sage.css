@@ -1,0 +1,96 @@
+/* FFXIV Sage Theme - Kardion Targeting System */
+
+/* Ultra-modern clinical sci-fi font */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+#MainMenu, footer, header {visibility: hidden;}
+
+/* Global App Background - Holographic Clinical Array */
+[data-testid="stAppViewContainer"] {
+    background-color: #020608; /* Void black/clinical dark */
+    background-image: 
+        /* Intersecting Noulith Laser Beams */
+        linear-gradient(115deg, transparent 20%, rgba(0, 229, 255, 0.08) 21%, rgba(0, 229, 255, 0.08) 22%, transparent 23%),
+        linear-gradient(-65deg, transparent 60%, rgba(0, 229, 255, 0.08) 61%, rgba(0, 229, 255, 0.08) 62%, transparent 63%),
+        /* High-tech targeting dot grid */
+        radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 20px 20px;
+    background-attachment: fixed;
+    color: #e0f7fa; 
+    font-family: 'Rajdhani', sans-serif !important;
+}
+
+/* Typography - Medical Hologram */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #00e5ff !important; /* Laser Cyan */
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 12px rgba(0, 229, 255, 0.6);
+    letter-spacing: 3px;
+}
+
+p, label, .stMarkdown {
+    font-family: 'Rajdhani', sans-serif !important;
+    color: #e0f7fa !important;
+    font-size: 1.1rem;
+}
+
+/* Sidebar - Clinical White & Cyan */
+[data-testid="stSidebar"] {
+    background-color: rgba(2, 6, 8, 0.95);
+    border-right: 2px solid #ffffff; /* Pure clinical white */
+    box-shadow: 2px 0px 20px rgba(0, 229, 255, 0.2);
+}
+
+/* Metric Cards - Noulith Monitors */
+[data-testid="stMetric"] {
+    background-color: rgba(5, 15, 20, 0.85);
+    border: 1px solid #00e5ff; 
+    /* The 4 Noulith targeting corners */
+    border-radius: 15px 0px 15px 0px; 
+    padding: 15px;
+    box-shadow: inset 0px 0px 15px rgba(0, 229, 255, 0.1), 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 2rem;
+    color: #ffffff; /* Pure white data */
+    font-weight: 700;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+
+[data-testid="stMetricDelta"] {
+    color: #00e5ff !important; 
+}
+
+/* Button - Phlegma / Pneuma Laser Fire */
+.stButton > button {
+    background-color: rgba(0, 229, 255, 0.1);
+    color: #00e5ff !important;
+    border-radius: 15px 0px 15px 0px;
+    border: 2px solid #00e5ff;
+    font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.15s ease-in-out;
+}
+
+.stButton > button:hover {
+    background-color: #00e5ff; /* Fires the laser */
+    color: #000000 !important;
+    box-shadow: 0px 0px 30px rgba(0, 229, 255, 0.9);
+}
+
+/* Expander & Matrix - Clean Hologram Data */
+.streamlit-expanderHeader {
+    background-color: rgba(5, 15, 20, 0.9);
+    color: #ffffff;
+    border: 1px solid #00e5ff;
+}
+
+[data-testid="stDataFrame"] {
+    background-color: rgba(5, 15, 20, 0.7);
+    border: 1px solid #00e5ff;
+}

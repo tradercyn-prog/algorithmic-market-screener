@@ -1,0 +1,58 @@
+/* FFXIV Monk Theme - The Chakra Gates */
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Noto+Sans+JP:wght@500;700;900&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #1a0f0a; /* Deep temple wood/shadow */
+    background-image: 
+        /* The 5 opened Chakra gates radiating outward */
+        radial-gradient(circle at 15% 50%, rgba(255, 195, 0, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 35% 50%, rgba(255, 195, 0, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(255, 195, 0, 0.25) 0%, transparent 30%), /* The Core */
+        radial-gradient(circle at 65% 50%, rgba(255, 195, 0, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 85% 50%, rgba(255, 195, 0, 0.15) 0%, transparent 20%);
+    background-attachment: fixed;
+    color: #f1e3d3; 
+    font-family: 'Noto Sans JP', sans-serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #ffc300 !important; /* Chakra Gold */
+    font-family: 'Saira Stencil One', cursive !important; /* Martial/Blocky */
+    text-transform: uppercase;
+    text-shadow: 0px 0px 10px rgba(255, 195, 0, 0.4);
+    letter-spacing: 2px;
+}
+
+p, label, .stMarkdown { color: #f1e3d3 !important; font-family: 'Noto Sans JP', sans-serif !important; }
+[data-testid="stSidebar"] { background-color: #110906; border-right: 4px solid #cc3300; } /* Crimson Gi trim */
+
+[data-testid="stMetric"] {
+    background-color: #21130d;
+    border: 2px solid #5a3a29; 
+    border-bottom: 5px solid #ffc300; /* Stance indicator */
+    border-radius: 4px; 
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
+
+[data-testid="stMetricValue"] { color: #ffffff; font-weight: 900; }
+[data-testid="stMetricDelta"] { color: #ffc300 !important; }
+
+.stButton > button {
+    background-color: #110906;
+    color: #ffc300 !important;
+    border-radius: 2px;
+    border: 2px solid #ffc300;
+    font-family: 'Saira Stencil One', cursive;
+    font-size: 1.2rem;
+    transition: all 0.15s ease-in;
+}
+
+/* Phantom Rush Hover */
+.stButton > button:hover {
+    background-color: #ffc300; 
+    color: #000000 !important;
+    box-shadow: 0px 0px 25px rgba(255, 195, 0, 0.8), inset 0px 0px 10px #ffffff;
+    transform: scale(1.04);
+}

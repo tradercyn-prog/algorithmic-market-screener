@@ -1,0 +1,95 @@
+/* FFXIV Gunbreaker Theme - Tactical Aetherial HUD */
+
+/* Import mechanical, sci-fi fonts */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Michroma&display=swap');
+
+#MainMenu, footer, header {visibility: hidden;}
+
+/* Global App Background - Gunbarrel & Cerulean Chamber */
+[data-testid="stAppViewContainer"] {
+    background-color: #14171a; /* Deep Gunmetal */
+    background-image: 
+        /* Aetherial Chamber Blue Glow */
+        radial-gradient(circle at 50% 50%, rgba(0, 191, 255, 0.08) 0%, transparent 60%),
+        /* Gunbarrel Rifling Lines */
+        repeating-conic-gradient(from 0deg at 50% 50%, rgba(100, 110, 120, 0.03) 0deg, rgba(100, 110, 120, 0.03) 5deg, transparent 5deg, transparent 30deg),
+        /* Diagonal tactical HUD slashes */
+        repeating-linear-gradient(135deg, rgba(0, 191, 255, 0.02) 0px, rgba(0, 191, 255, 0.02) 2px, transparent 2px, transparent 20px);
+    background-attachment: fixed;
+    color: #cfd8dc; 
+    font-family: 'Michroma', sans-serif !important;
+}
+
+/* Typography - Tactical Readout */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #00bfff !important; /* Cerulean Aether Blue */
+    font-family: 'Audiowide', cursive !important;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 10px rgba(0, 191, 255, 0.5);
+}
+
+p, label, .stMarkdown {
+    font-family: 'Michroma', sans-serif !important;
+    color: #cfd8dc !important;
+    font-size: 0.95rem;
+}
+
+/* Sidebar - Gunmetal & Brass */
+[data-testid="stSidebar"] {
+    background-color: #1a1e24;
+    border-right: 3px solid #b5a642; /* Cartridge Brass */
+    box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Metric Cards - Aetherial Cylinders */
+[data-testid="stMetric"] {
+    background-color: #21272e;
+    border: 1px solid #37474f; 
+    border-left: 5px solid #00bfff; /* Cerulean charge indicator */
+    border-right: 5px solid #b5a642; /* Brass casing */
+    padding: 15px;
+    border-radius: 3px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+[data-testid="stMetricDelta"] {
+    color: #b5a642 !important; /* Brass delta */
+}
+
+/* Button - Continuation / Superbolide */
+.stButton > button {
+    background-color: #21272e;
+    color: #00bfff !important;
+    border-radius: 3px;
+    border: 2px solid #00bfff;
+    font-family: 'Audiowide', cursive;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.2s ease-out;
+}
+
+/* Pull the Trigger */
+.stButton > button:hover {
+    background-color: #00bfff; /* Cerulean Explosion */
+    color: #000000 !important;
+    box-shadow: 0px 0px 25px rgba(0, 191, 255, 0.8), inset 0px 0px 10px rgba(255, 255, 255, 0.5);
+    transform: translateX(2px); /* Recoil effect */
+}
+
+/* Expander & Matrix */
+.streamlit-expanderHeader {
+    background-color: #1a1e24;
+    color: #b5a642;
+    border: 1px solid #37474f;
+}
+
+[data-testid="stDataFrame"] {
+    background-color: rgba(26, 30, 36, 0.85);
+    border: 1px solid #00bfff;
+}

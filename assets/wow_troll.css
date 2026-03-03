@@ -1,0 +1,45 @@
+/* WoW Troll Theme - Darkspear Voodoo */
+@import url('https://fonts.googleapis.com/css2?family=Trade+Winds&family=Ubuntu:wght@400;700&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #0a1a12; /* Echo Isles Jungle */
+    background-image: 
+        /* Voodoo Hex glow */
+        radial-gradient(circle at 80% 80%, rgba(64, 224, 208, 0.15) 0%, transparent 50%),
+        /* Tribal paint markings */
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 5px, transparent 5px, transparent 30px);
+    background-attachment: fixed;
+    color: #dcdcdc; 
+    font-family: 'Ubuntu', sans-serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #f5f5dc !important; /* Bone White */
+    font-family: 'Trade Winds', cursive !important;
+    text-shadow: 0px 0px 10px rgba(64, 224, 208, 0.6); /* Turquoise glow */
+}
+
+[data-testid="stSidebar"] { background-color: #06120c; border-right: 3px dashed #40e0d0; } /* Stitched/tribal border */
+
+[data-testid="stMetric"] {
+    background-color: #122b1d;
+    border: 2px dashed #f5f5dc; /* Bone/hide stitching */
+    border-radius: 15px; 
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(64, 224, 208, 0.1);
+}
+
+[data-testid="stMetricValue"] { color: #40e0d0; font-weight: 700; }
+[data-testid="stMetricDelta"] { color: #f5f5dc !important; }
+
+.stButton > button {
+    background-color: #0a1a12;
+    color: #40e0d0 !important;
+    border-radius: 15px;
+    border: 2px solid #40e0d0;
+    font-family: 'Trade Winds', cursive;
+    transition: all 0.2s;
+}
+
+.stButton > button:hover { background-color: #40e0d0; color: #000000 !important; box-shadow: 0px 0px 20px rgba(64, 224, 208, 0.8); }

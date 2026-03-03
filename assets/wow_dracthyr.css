@@ -1,0 +1,49 @@
+/* WoW Dracthyr Theme - Prismatic Scales */
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #1a1612; /* Bronze aspect base */
+    background-image: 
+        /* Ruby/Emerald/Azure prismatic glows */
+        radial-gradient(circle at 10% 10%, rgba(220, 20, 60, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(64, 224, 208, 0.1) 0%, transparent 40%),
+        /* Dragon scale overlapping texture */
+        radial-gradient(circle at 10px 10px, rgba(218, 165, 32, 0.05) 5px, transparent 6px);
+    background-size: 100% 100%, 100% 100%, 20px 20px;
+    background-attachment: fixed;
+    color: #e6dfd5; 
+    font-family: 'Philosopher', sans-serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #ffd700 !important; /* Aspect Gold */
+    font-family: 'Philosopher', sans-serif !important;
+    font-weight: 700;
+    text-shadow: 0px 0px 15px rgba(218, 165, 32, 0.4);
+}
+
+[data-testid="stSidebar"] { background-color: rgba(18, 14, 11, 0.95); border-right: 2px solid #40e0d0; } /* Turquoise/Azure trim */
+
+[data-testid="stMetric"] {
+    background-color: rgba(36, 28, 22, 0.85);
+    border: 1px solid #b8860b; /* Dark Goldenrod */
+    border-radius: 12px 0px 12px 0px; 
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+[data-testid="stMetricValue"] { color: #ffffff; font-weight: 700; }
+[data-testid="stMetricDelta"] { color: #dc143c !important; } /* Ruby Red */
+
+.stButton > button {
+    background-color: #1a1612;
+    color: #ffd700 !important;
+    border-radius: 12px 0px 12px 0px;
+    border: 1px solid #ffd700;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover { background-color: #40e0d0; color: #000000 !important; border-color: #40e0d0; box-shadow: 0px 0px 20px rgba(64, 224, 208, 0.7); }

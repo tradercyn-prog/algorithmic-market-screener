@@ -1,0 +1,63 @@
+/* FFXIV Scholar Theme - Chain Stratagem */
+
+/* Import academic textbook font */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+#MainMenu, footer, header {visibility: hidden;}
+
+/* Global App Background - Tactical Map & Fairy Glow */
+[data-testid="stAppViewContainer"] {
+    background-color: #04111d; /* Deep Nymian Navy */
+    background-image: 
+        /* Tactical grid paper effect */
+        linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+        /* Fairy magic glow (Eos/Selene) */
+        radial-gradient(circle at 80% 20%, rgba(88, 214, 141, 0.15) 0%, transparent 40%);
+    background-size: 30px 30px, 30px 30px, 100% 100%;
+    color: #eaecee; 
+    font-family: 'Libre Baskerville', serif !important;
+}
+
+/* Typography Overrides */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #d4af37 !important; /* Antique Brass/Gold */
+    font-family: 'Libre Baskerville', serif !important;
+    font-weight: 700;
+    text-shadow: 0px 0px 8px rgba(212, 175, 55, 0.3);
+}
+
+p, label, .stMarkdown {
+    font-family: 'Libre Baskerville', serif !important;
+    color: #eaecee !important;
+}
+
+/* Metric Cards - Leatherbound Tomes */
+[data-testid="stMetric"] {
+    background-color: rgba(10, 20, 35, 0.9);
+    border: 1px solid #2c3e50; 
+    border-left: 5px solid #d4af37; /* Book spine */
+    padding: 15px;
+    border-radius: 2px;
+}
+
+[data-testid="stMetricValue"] {
+    color: #58d68d; /* Fairy Green */
+}
+
+/* Button - Broil / Excogitation */
+.stButton > button {
+    background-color: #04111d;
+    color: #d4af37 !important;
+    border-radius: 2px;
+    border: 1px solid #d4af37;
+    font-family: 'Libre Baskerville', serif;
+    transition: all 0.2s;
+}
+
+.stButton > button:hover {
+    background-color: #58d68d; /* Fairy green active */
+    color: #000000 !important;
+    border-color: #58d68d;
+    box-shadow: 0px 0px 15px rgba(88, 214, 141, 0.5);
+}

@@ -1,0 +1,99 @@
+/* FFXIV Paladin Theme - Passage of Arms */
+
+/* Import Regal and Clean Sans fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Montserrat:wght@400;600;700&display=swap');
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Global App Background - Divine Light from the Heavens */
+[data-testid="stAppViewContainer"] {
+    background-color: #0b132b; /* Deep Royal Navy */
+    background-image: 
+        /* Holy light ray shining down from the top center */
+        radial-gradient(ellipse at 50% -20%, rgba(255, 255, 255, 0.25) 0%, rgba(241, 196, 15, 0.1) 40%, transparent 70%),
+        /* Faint angelic wing geometry / Aegis Shield curves */
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 90% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: #f8f9fa; /* Pristine Silver/White */
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Typography Overrides - Regal Headers */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #f1c40f !important; /* Paladin Gold */
+    font-family: 'Cinzel', serif !important;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-shadow: 0px 2px 10px rgba(241, 196, 15, 0.3);
+    letter-spacing: 1px;
+}
+
+p, label, .stMarkdown {
+    font-family: 'Montserrat', sans-serif !important;
+    color: #f8f9fa !important;
+}
+
+/* Sidebar Styling - Royal Blue and Gold */
+[data-testid="stSidebar"] {
+    background-color: rgba(11, 19, 43, 0.95);
+    border-right: 3px solid #f1c40f; 
+    box-shadow: 2px 0px 20px rgba(241, 196, 15, 0.2);
+}
+
+/* Metric Cards - Shield Plating */
+[data-testid="stMetric"] {
+    background-color: rgba(28, 37, 65, 0.85); /* Slate armor */
+    border: 2px solid #ffffff; /* Silver trim */
+    border-top: 4px solid #f1c40f; /* Crown gold top */
+    padding: 15px;
+    border-radius: 8px; /* Sturdy, defensive curves */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    color: #ffffff; /* Pure Holy White */
+    font-weight: 700;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+}
+
+[data-testid="stMetricDelta"] {
+    color: #f1c40f !important; /* Gold delta */
+}
+
+/* Button Styling - Clemency / Holy Spirit */
+.stButton > button {
+    background-color: #f1c40f;
+    color: #0b132b !important;
+    border-radius: 4px;
+    border: none;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Shield Block Hover Effect */
+.stButton > button:hover {
+    background-color: #ffffff; /* Flashes Holy White */
+    color: #0b132b !important;
+    box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.8);
+    transform: scale(1.03); /* Bracing behind the shield */
+}
+
+/* Expander & Matrix */
+.streamlit-expanderHeader {
+    background-color: rgba(28, 37, 65, 0.9);
+    color: #f1c40f;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+}
+
+[data-testid="stDataFrame"] {
+    background-color: rgba(11, 19, 43, 0.8);
+    border: 2px solid #ffffff;
+}

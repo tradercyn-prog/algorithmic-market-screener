@@ -1,0 +1,55 @@
+/* FFXIV Ninja Theme - Mudra Shadows */
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;800&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #05020a; /* Pitch black / Deep Violet */
+    background-image: 
+        /* Shuriken/Mudra Geometry in the shadows */
+        linear-gradient(45deg, rgba(138, 43, 226, 0.03) 25%, transparent 25%, transparent 75%, rgba(138, 43, 226, 0.03) 75%, rgba(138, 43, 226, 0.03)),
+        linear-gradient(-45deg, rgba(138, 43, 226, 0.03) 25%, transparent 25%, transparent 75%, rgba(138, 43, 226, 0.03) 75%, rgba(138, 43, 226, 0.03));
+    background-size: 40px 40px;
+    background-attachment: fixed;
+    color: #d8cde6; 
+    font-family: 'Shippori Mincho', serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #b05fe6 !important; /* Ninjutsu Purple */
+    font-family: 'Shippori Mincho', serif !important;
+    font-weight: 800;
+    text-shadow: 2px 2px 0px #000000, 0px 0px 10px rgba(176, 95, 230, 0.5);
+}
+
+p, label, .stMarkdown { color: #d8cde6 !important; }
+[data-testid="stSidebar"] { background-color: rgba(5, 2, 10, 0.95); border-right: 2px solid #b05fe6; }
+
+[data-testid="stMetric"] {
+    background-color: rgba(15, 8, 26, 0.9);
+    border: 1px solid #3c1f59; 
+    border-left: 4px solid #ff1a1a; /* Kassatsu Red */
+    border-radius: 0px; 
+    padding: 15px;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,1); /* Deep internal shadow */
+}
+
+[data-testid="stMetricValue"] { color: #ffffff; }
+[data-testid="stMetricDelta"] { color: #b05fe6 !important; }
+
+.stButton > button {
+    background-color: #05020a;
+    color: #b05fe6 !important;
+    border-radius: 0px;
+    border: 1px dashed #b05fe6; /* Scroll/Mudra edge */
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 800;
+    letter-spacing: 2px;
+    transition: all 0.1s ease-out; /* Fast as a shadow */
+}
+
+.stButton > button:hover {
+    background-color: #b05fe6; 
+    color: #000000 !important;
+    border-style: solid;
+    box-shadow: 0px 0px 15px rgba(176, 95, 230, 0.7);
+}

@@ -1,0 +1,46 @@
+/* WoW Tauren Theme - Thunder Bluff */
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@600;800&family=PT+Sans:wght@400;700&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #2b1d14; /* Heavy hide/leather */
+    background-image: 
+        /* Mulgore sunrise */
+        radial-gradient(ellipse at 50% 0%, rgba(255, 140, 0, 0.15) 0%, transparent 60%),
+        /* Totem wood grain */
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0px, transparent 1px, transparent 10px);
+    background-attachment: fixed;
+    color: #e8dcc5; 
+    font-family: 'PT Sans', sans-serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #ff8c00 !important; /* Sunburst Orange */
+    font-family: 'Eczar', serif !important;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+}
+
+[data-testid="stSidebar"] { background-color: #1c120c; border-right: 4px solid #20b2aa; } /* Spirit-walker teal */
+
+[data-testid="stMetric"] {
+    background-color: #36251a;
+    border: 2px solid #5c4033; /* Dark wood */
+    border-left: 6px solid #20b2aa; /* Spirit link */
+    border-radius: 8px; 
+    padding: 15px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+}
+
+[data-testid="stMetricValue"] { color: #ffffff; }
+[data-testid="stMetricDelta"] { color: #ff8c00 !important; }
+
+.stButton > button {
+    background-color: #5c4033;
+    color: #ff8c00 !important;
+    border-radius: 8px;
+    border: 2px solid #ff8c00;
+    font-family: 'Eczar', serif;
+    transition: all 0.2s;
+}
+
+.stButton > button:hover { background-color: #ff8c00; color: #1c120c !important; transform: scale(1.03); }

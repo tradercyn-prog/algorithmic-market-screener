@@ -1,0 +1,51 @@
+/* FFXIV Red Mage Theme - Dualcast */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    /* 50/50 Diagonal Split of Black and White Mana */
+    background: linear-gradient(135deg, #1a1a1a 49.8%, #d90429 49.8%, #d90429 50.2%, #f8f9fa 50.2%);
+    background-attachment: fixed;
+    color: #ffffff; /* We'll use panels to make text readable */
+    font-family: 'Cormorant Garamond', serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #d90429 !important; /* Vermilion */
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 700;
+    background-color: rgba(26, 26, 26, 0.85); /* Dark backing for contrast */
+    padding: 10px;
+    border-left: 5px solid #d90429;
+}
+
+p, label, .stMarkdown { color: #1a1a1a !important; font-weight: 600; }
+
+[data-testid="stSidebar"] {
+    background-color: #1a1a1a;
+    border-right: 3px solid #d90429; 
+}
+
+/* Because the background is split, we need solid panels for the data */
+[data-testid="stMetric"], .streamlit-expanderHeader, [data-testid="stDataFrame"] {
+    background-color: rgba(248, 249, 250, 0.95); /* White mana panels */
+    border: 2px solid #1a1a1a; /* Black mana borders */
+    border-top: 4px solid #d90429; /* Vermilion trim */
+    border-radius: 0px; 
+    padding: 15px;
+}
+
+[data-testid="stMetricValue"] { color: #1a1a1a; }
+[data-testid="stMetricDelta"] { color: #d90429 !important; }
+
+.stButton > button {
+    background-color: #d90429;
+    color: #ffffff !important;
+    border-radius: 0px;
+    border: 2px solid #1a1a1a;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+}
+
+.stButton > button:hover { background-color: #1a1a1a; border-color: #d90429; }

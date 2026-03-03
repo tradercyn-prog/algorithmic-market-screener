@@ -1,0 +1,73 @@
+/* Bloomberg Terminal Theme */
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Global App Background - Pure Black & System Monospace */
+[data-testid="stAppViewContainer"] {
+    background-color: #000000;
+    color: #FF9900; /* Classic Bloomberg Amber */
+    font-family: 'Consolas', 'Courier New', monospace !important;
+}
+
+/* Force all headers and text to the Bloomberg Amber */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3, p, label, .stMarkdown {
+    color: #FF9900 !important;
+    font-family: 'Consolas', 'Courier New', monospace !important;
+    text-transform: uppercase; /* Institutional feel */
+}
+
+/* Sidebar Styling - Slightly offset black */
+[data-testid="stSidebar"] {
+    background-color: #050505;
+    border-right: 2px solid #FF9900;
+}
+
+/* Metric Cards (The Top Row) */
+[data-testid="stMetric"] {
+    background-color: #000000;
+    border: 1px solid #FF9900;
+    padding: 15px;
+    border-radius: 0px !important; /* Kill the rounded corners */
+}
+
+[data-testid="stMetricValue"], [data-testid="stMetricDelta"] {
+    font-family: 'Consolas', 'Courier New', monospace !important;
+}
+
+/* Button Styling - Brutalist and Blocky */
+.stButton > button {
+    background-color: #000000;
+    color: #FF9900;
+    border-radius: 0px;
+    border: 2px solid #FF9900;
+    font-weight: bold;
+    font-family: 'Consolas', 'Courier New', monospace;
+    text-transform: uppercase;
+    transition: none; /* Terminals don't have smooth transitions */
+}
+
+/* Inverse colors on hover */
+.stButton > button:hover {
+    background-color: #FF9900;
+    color: #000000;
+    border-color: #FF9900;
+}
+
+/* Selectboxes and Inputs */
+.stSelectbox div[data-baseweb="select"] > div {
+    background-color: #000000;
+    border: 1px solid #FF9900;
+    border-radius: 0px;
+    color: #FF9900;
+}
+
+/* Expander (AI Analysis Section) */
+.streamlit-expanderHeader {
+    background-color: #050505;
+    color: #FF9900;
+    border: 1px solid #FF9900;
+    border-radius: 0px;
+}

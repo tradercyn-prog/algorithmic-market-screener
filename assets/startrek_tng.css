@@ -1,0 +1,85 @@
+/* Star Trek TNG - LCARS Interface */
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@400;600&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+/* Global App Background - Deep Space Black */
+[data-testid="stAppViewContainer"] {
+    background-color: #000000;
+    color: #ff9900; /* LCARS Orange */
+    font-family: 'Antonio', sans-serif !important;
+}
+
+/* LCARS Typography - Strict Uppercase */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #cc99cc !important; /* LCARS Lavender */
+    font-family: 'Antonio', sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p, label, .stMarkdown { 
+    color: #99ccff !important; /* LCARS Pale Blue */
+    font-size: 1.2rem; 
+    text-transform: uppercase; 
+}
+
+/* Sidebar - The iconic LCARS structural arch */
+[data-testid="stSidebar"] {
+    background-color: #000000;
+    border-right: 35px solid #ff9900; /* Thick Orange Band */
+    border-top-right-radius: 60px; /* Smooth LCARS curve */
+    border-bottom-right-radius: 60px;
+}
+
+/* Metric Cards - LCARS Data Blocks */
+[data-testid="stMetric"] {
+    background-color: #000000;
+    border: none;
+    border-left: 15px solid #cc6666; /* LCARS Rust/Red */
+    border-top: 15px solid #cc6666;
+    border-top-left-radius: 30px; /* The classic elbow joint */
+    padding: 15px;
+}
+
+[data-testid="stMetricValue"] { 
+    color: #ffcc00; /* LCARS Gold */
+    font-family: 'Antonio', sans-serif !important; 
+    font-size: 2rem;
+}
+[data-testid="stMetricDelta"] { color: #99ccff !important; }
+
+/* Pill Buttons - Make it so. */
+.stButton > button, .stButton > button * {
+    background-color: #99ccff !important; /* LCARS Blue */
+    color: #000000 !important; /* THIS IS THE TEXT COLOR (Pure Black) */
+    border-radius: 50px !important; /* Perfect pill shape */
+    border: none !important;
+    font-family: 'Antonio', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 1.2rem !important;
+    text-transform: uppercase !important;
+    text-align: right !important; /* LCARS buttons are right-aligned */
+    transition: all 0.1s !important;
+}
+
+/* Button Hover Effect */
+.stButton > button:hover, .stButton > button:hover * {
+    background-color: #ffcc00 !important; /* Flashes Gold on tap */
+    color: #000000 !important; /* Keeps text black on hover */
+    transform: scale(0.98);
+}
+
+/* Matrix & Expander - More LCARS Elbow Joints */
+.streamlit-expanderHeader {
+    background-color: #000000;
+    color: #ff9900;
+    border-left: 15px solid #ff9900;
+    border-top-left-radius: 20px;
+}
+
+[data-testid="stDataFrame"] {
+    background-color: #000000;
+    border-left: 20px solid #cc99cc;
+    border-bottom: 20px solid #cc99cc;
+    border-bottom-left-radius: 40px;
+}

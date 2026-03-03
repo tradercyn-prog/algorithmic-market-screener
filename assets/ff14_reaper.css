@@ -1,0 +1,54 @@
+/* FFXIV Reaper Theme - Enshroud */
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Roboto:wght@400;700&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #050505;
+    background-image: 
+        /* Void Tear in the background */
+        radial-gradient(ellipse 20% 100% at 50% 50%, rgba(46, 204, 113, 0.15) 0%, transparent 80%),
+        /* Scythe scratch marks */
+        linear-gradient(110deg, transparent 20%, rgba(139, 0, 0, 0.1) 21%, transparent 22%),
+        linear-gradient(105deg, transparent 70%, rgba(139, 0, 0, 0.1) 71%, transparent 72%);
+    background-attachment: fixed;
+    color: #bdc3c7; 
+    font-family: 'Roboto', sans-serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #2ecc71 !important; /* Sickly Void Green */
+    font-family: 'Metal Mania', cursive !important;
+    letter-spacing: 2px;
+    text-shadow: 0px 0px 15px rgba(46, 204, 113, 0.4);
+}
+
+p, label, .stMarkdown { color: #bdc3c7 !important; }
+[data-testid="stSidebar"] { background-color: #0a0a0a; border-right: 2px solid #8b0000; }
+
+[data-testid="stMetric"] {
+    background-color: #0a0a0a;
+    border: 1px solid #2ecc71; 
+    border-bottom: 3px solid #8b0000; /* Blood red */
+    border-radius: 0px; 
+    box-shadow: inset 0 0 10px rgba(46, 204, 113, 0.1);
+}
+
+[data-testid="stMetricValue"] { color: #ffffff; }
+[data-testid="stMetricDelta"] { color: #2ecc71 !important; }
+
+.stButton > button {
+    background-color: #050505;
+    color: #2ecc71 !important;
+    border-radius: 0px;
+    border: 1px solid #2ecc71;
+    font-family: 'Metal Mania', cursive;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+}
+
+.stButton > button:hover {
+    background-color: #8b0000; /* Blood gauge */
+    color: #ffffff !important;
+    border-color: #8b0000;
+    box-shadow: 0px 0px 20px rgba(139, 0, 0, 0.8);
+}

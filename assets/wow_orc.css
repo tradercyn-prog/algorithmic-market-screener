@@ -1,0 +1,49 @@
+/* WoW Orc Theme - Blood and Thunder */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;700&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #1a0a0a; /* Durotar dirt and dried blood */
+    background-image: 
+        /* War Paint Slashes */
+        linear-gradient(135deg, transparent 40%, rgba(139, 0, 0, 0.15) 45%, transparent 50%),
+        /* Iron texture */
+        radial-gradient(rgba(255,255,255,0.02) 2px, transparent 3px);
+    background-attachment: fixed;
+    color: #e0e0e0; 
+    font-family: 'Oswald', sans-serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #ff1a1a !important; /* Horde Red */
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0px #4a0000; /* Heavy block shadow */
+}
+
+[data-testid="stSidebar"] { background-color: #0d0505; border-right: 5px solid #8b0000; }
+
+[data-testid="stMetric"] {
+    background-color: #241111;
+    border: 3px solid #4a0000; 
+    border-top: 6px solid #ff1a1a; /* Heavy iron plating */
+    border-radius: 0px; 
+    padding: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.7);
+}
+
+[data-testid="stMetricValue"] { color: #ffffff; }
+[data-testid="stMetricDelta"] { color: #ff1a1a !important; }
+
+.stButton > button {
+    background-color: #8b0000;
+    color: #ffffff !important;
+    border-radius: 0px;
+    border: 2px solid #ff1a1a;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    transition: all 0.15s;
+}
+
+.stButton > button:hover { background-color: #ff1a1a; transform: scale(1.05); }

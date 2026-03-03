@@ -1,0 +1,70 @@
+/* Terminal Green Theme */
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Global App Background - Deep Black & Monospace Font */
+[data-testid="stAppViewContainer"] {
+    background-color: #050505;
+    color: #39FF14; /* Neon Green */
+    font-family: 'Courier New', Courier, monospace !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #39FF14 !important;
+    font-family: 'Courier New', Courier, monospace !important;
+}
+
+/* Sidebar Styling */
+[data-testid="stSidebar"] {
+    background-color: #0A0A0A;
+    border-right: 1px solid #1A5E20;
+}
+
+/* Metric Cards (The Top Row) */
+[data-testid="stMetric"] {
+    background-color: #000000;
+    border: 1px solid #39FF14;
+    padding: 15px;
+    border-radius: 0px; /* Sharp corners for the retro feel */
+    box-shadow: 0 0 8px rgba(57, 255, 20, 0.15);
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #39FF14;
+}
+
+/* Button Styling */
+.stButton > button {
+    background-color: #000000;
+    color: #39FF14;
+    border-radius: 0px;
+    border: 1px solid #39FF14;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    transition: all 0.2s ease-in-out;
+}
+
+.stButton > button:hover {
+    background-color: #1A5E20;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+    color: white;
+    border-color: #39FF14;
+}
+
+/* Expander (AI Analysis Section) */
+.streamlit-expanderHeader {
+    background-color: #0A0A0A;
+    color: #39FF14;
+    border: 1px solid #1A5E20;
+    border-radius: 0px;
+}
+
+/* Text overrides to ensure everything stays green */
+p, label, .stMarkdown {
+    color: #39FF14 !important;
+}

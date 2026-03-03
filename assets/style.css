@@ -1,0 +1,53 @@
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Global App Background */
+[data-testid="stAppViewContainer"] {
+    background-color: #0E1117;
+    color: #FAFAFA;
+}
+
+/* Sidebar Styling */
+[data-testid="stSidebar"] {
+    background-color: #161A25;
+    border-right: 1px solid #2D3748;
+}
+
+/* Metric Cards (The Top Row) */
+[data-testid="stMetric"] {
+    background-color: #1E232F;
+    border: 1px solid #2D3748;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #E2E8F0;
+}
+
+/* Button Styling */
+.stButton > button {
+    background-color: #2B6CB0;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    background-color: #2C5282;
+    box-shadow: 0 0 10px rgba(43, 108, 176, 0.5);
+    border-color: #2B6CB0;
+}
+
+/* Expander (AI Analysis Section) */
+.streamlit-expanderHeader {
+    background-color: #161A25;
+    border-radius: 4px;
+}

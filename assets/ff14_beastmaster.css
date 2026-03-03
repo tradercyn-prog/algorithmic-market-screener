@@ -1,0 +1,52 @@
+/* FFXIV Beastmaster Theme - The Untamed */
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@600;800&family=PT+Sans:wght@400;700&display=swap');
+#MainMenu, footer, header {visibility: hidden;}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #1a241c; /* Deep Jungle Green */
+    background-image: 
+        /* 3 Massive Claw Slashes */
+        linear-gradient(115deg, transparent 40%, rgba(212, 163, 115, 0.15) 41%, transparent 42%),
+        linear-gradient(115deg, transparent 45%, rgba(212, 163, 115, 0.15) 46%, transparent 47%),
+        linear-gradient(115deg, transparent 50%, rgba(212, 163, 115, 0.15) 51%, transparent 52%);
+    background-attachment: fixed;
+    color: #e0e0e0; 
+    font-family: 'PT Sans', sans-serif !important;
+}
+
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #d4a373 !important; /* Leather/Bone Brown */
+    font-family: 'Eczar', serif !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+p, label, .stMarkdown { color: #e0e0e0 !important; }
+[data-testid="stSidebar"] { background-color: #121a14; border-right: 3px solid #8b5a2b; }
+
+[data-testid="stMetric"] {
+    background-color: #121a14;
+    border: 2px solid #2d4a36; 
+    border-left: 6px solid #d4a373; /* Bone accent */
+    border-radius: 5px; 
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+[data-testid="stMetricValue"] { color: #ffffff; font-weight: 700; }
+[data-testid="stMetricDelta"] { color: #d4a373 !important; }
+
+.stButton > button {
+    background-color: #8b5a2b; /* Hide Leather */
+    color: #ffffff !important;
+    border-radius: 5px;
+    border: none;
+    font-family: 'Eczar', serif;
+    transition: all 0.2s;
+}
+
+.stButton > button:hover {
+    background-color: #d4a373; 
+    color: #1a241c !important;
+    transform: scale(1.02);
+}

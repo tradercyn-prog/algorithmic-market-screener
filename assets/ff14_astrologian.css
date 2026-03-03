@@ -1,0 +1,63 @@
+/* FFXIV Astrologian Theme - Divination */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap');
+
+#MainMenu, footer, header {visibility: hidden;}
+
+/* Global App Background - The Cosmos & Infinite Starfield */
+[data-testid="stAppViewContainer"] {
+    background-color: #070414; /* Deep space night */
+    background-image: 
+        /* Starfield Layer 1 (Dense) */
+        radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+        /* Starfield Layer 2 (Sparse & Offset) */
+        radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px),
+        /* The Astrolabe Rings */
+        repeating-radial-gradient(circle at 50% 50%, rgba(255, 230, 153, 0.03) 0, rgba(255, 230, 153, 0.03) 2px, transparent 2px, transparent 120px),
+        /* Nebula glow */
+        radial-gradient(ellipse at 50% 50%, rgba(138, 43, 226, 0.12) 0%, transparent 80%);
+    /* This controls the spacing of the stars vs the massive rings */
+    background-size: 60px 60px, 110px 110px, 100% 100%, 100% 100%;
+    background-position: 0 0, 35px 35px, 0 0, 0 0;
+    background-attachment: fixed;
+    color: #e6e6fa; 
+    font-family: 'Playfair Display', serif !important;
+}
+
+/* Typography - Constellations */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #ffe699 !important; /* Starlight Gold */
+    font-family: 'Playfair Display', serif !important;
+    text-shadow: 0px 0px 15px rgba(255, 230, 153, 0.5);
+    font-style: italic; /* Gives a flowing, mystical vibe */
+}
+
+/* Metric Cards - Tarot Cards */
+[data-testid="stMetric"] {
+    background-color: rgba(15, 10, 30, 0.85);
+    border: 1px solid #8a2be2; /* Cosmic Purple */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.2);
+}
+
+[data-testid="stMetricValue"] {
+    color: #ffe699;
+}
+
+/* Button - Earthly Star */
+.stButton > button {
+    background-color: #070414;
+    color: #ffe699 !important;
+    border-radius: 30px; 
+    border: 1px solid #ffe699;
+    font-family: 'Playfair Display', serif;
+    transition: all 0.5s ease; /* Slow, mystical fade */
+}
+
+.stButton > button:hover {
+    background-color: #8a2be2;
+    color: #ffffff !important;
+    border-color: #8a2be2;
+    box-shadow: 0px 0px 25px rgba(138, 43, 226, 0.8);
+}

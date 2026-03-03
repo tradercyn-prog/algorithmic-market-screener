@@ -1,0 +1,104 @@
+/* FFXIV Dragoon Theme - Blood of the Dragon */
+
+/* Import Ishgardian-style sharp, tall gothic font */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap');
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Global App Background - The Piercing Stardiver */
+[data-testid="stAppViewContainer"] {
+    background-color: #060b14; /* Deep Ishgardian night */
+    background-image: 
+        /* Stardiver Crimson Piercing Line down the center */
+        linear-gradient(90deg, transparent 48%, rgba(230, 57, 70, 0.15) 50%, transparent 52%),
+        /* Azure Dragoon Aura spreading outward from the top */
+        radial-gradient(ellipse at 50% 0%, rgba(74, 144, 226, 0.15) 0%, transparent 60%);
+    background-attachment: fixed;
+    color: #e2e8f0; /* Silver scale armor text */
+    /* Oswald is a very tall, piercing, structural font */
+    font-family: 'Oswald', sans-serif !important;
+}
+
+/* Typography Overrides */
+[data-testid="stApp"] h1, [data-testid="stApp"] h2, [data-testid="stApp"] h3 {
+    color: #4a90e2 !important; /* Azure Blue */
+    font-family: 'Cinzel Decorative', serif !important; /* Spiky gothic headers */
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 10px rgba(74, 144, 226, 0.4);
+    letter-spacing: 2px;
+}
+
+p, label, .stMarkdown {
+    font-family: 'Oswald', sans-serif !important;
+    color: #e2e8f0 !important;
+}
+
+/* Sidebar Styling - Forged Steel and Azure */
+[data-testid="stSidebar"] {
+    background-color: rgba(6, 11, 20, 0.95);
+    border-right: 2px solid #4a90e2; 
+    box-shadow: 2px 0px 15px rgba(74, 144, 226, 0.2);
+}
+
+/* Metric Cards - Scale Armor Plating */
+[data-testid="stMetric"] {
+    background-color: rgba(15, 23, 42, 0.85); /* Slate gray/blue armor */
+    /* Simulating a 3D beveled armor edge */
+    border-top: 2px solid #4a90e2; /* Azure highlight */
+    border-left: 2px solid #4a90e2;
+    border-bottom: 2px solid #e63946; /* Crimson shadow/Blood of the Dragon */
+    border-right: 2px solid #e63946;
+    padding: 15px;
+    border-radius: 0px; /* Sharp, lethal corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    color: #e2e8f0; /* Silver text */
+    font-weight: 700;
+}
+
+[data-testid="stMetricDelta"] {
+    color: #e63946 !important; /* Crimson red for the delta indicator */
+}
+
+/* Button Styling - Geirskogul */
+.stButton > button {
+    background-color: #0f172a;
+    color: #4a90e2 !important;
+    border-radius: 0px;
+    border: 1px solid #4a90e2;
+    font-weight: 700;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* High Jump Hover Effect */
+.stButton > button:hover {
+    background-color: #e63946; /* Explodes into Crimson */
+    color: #ffffff !important;
+    border-color: #e63946;
+    box-shadow: 0px 10px 20px rgba(230, 57, 70, 0.6);
+    transform: translateY(-3px); /* Physically jumps upward on hover! */
+}
+
+/* Expander & Matrix */
+.streamlit-expanderHeader {
+    background-color: rgba(15, 23, 42, 0.9);
+    color: #4a90e2;
+    border: 1px solid #4a90e2;
+    border-radius: 0px;
+}
+
+[data-testid="stDataFrame"] {
+    background-color: rgba(15, 23, 42, 0.8);
+    border: 1px solid #4a90e2;
+}
