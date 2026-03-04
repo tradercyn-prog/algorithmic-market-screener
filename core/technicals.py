@@ -115,15 +115,15 @@ def evaluate_screener_rules(df, rules):
             continue
 
         # 3. Standard Logic Engine
-        if rule["condition"] == ">":
+        if cond == ">":
             if not (ind_val > compare_val): passed_all_rules = False
-        elif rule["condition"] == "<":
+        elif cond == "<":
             if not (ind_val < compare_val): passed_all_rules = False
-        elif rule["condition"] == "==":
+        elif cond == "==":
             if not (ind_val == compare_val): passed_all_rules = False
-        elif rule["condition"] == "Crosses Above":
+        elif cond == "Crosses Above":
             if not (prev[ind_col] <= prev_compare_val and ind_val > compare_val): passed_all_rules = False
-        elif rule["condition"] == "Crosses Below":
+        elif cond == "Crosses Below":
             if not (prev[ind_col] >= prev_compare_val and ind_val < compare_val): passed_all_rules = False
 
         if not passed_all_rules:
