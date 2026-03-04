@@ -33,13 +33,18 @@ def generate_omni_feed(ticker, asset_type):
         
         latest = df.iloc[-1]
         
-        payload += f"Current Price: {latest.get('close', 0):.2f}\n"
-        payload += f"Volume: {latest.get('volume', 0):,.0f}\n"
-        payload += f"SMA 20: {latest.get('SMA_20', 0):.2f}\n"
-        payload += f"SMA 50: {latest.get('SMA_50', 0):.2f}\n"
-        payload += f"SMA 200: {latest.get('SMA_200', 0):.2f}\n"
-        payload += f"RSI (14): {latest.get('RSI_14', 0):.2f}\n"
-        payload += f"MACD Line: {latest.get('MACD', 0):.2f} | Signal: {latest.get('MACD_SIGNAL', 0):.2f}\n\n"
+        # SAFTEY GUARD: Prevent NoneTypes from crashing the string formatter
+        def get_val(key):
+            val = latest.get(key)
+            return val if pd.notna(val) else 0
+        
+        payload += f"Current Price: {get_val('close'):.2f}\n"
+        payload += f"Volume: {get_val('volume'):,.0f}\n"
+        payload += f"SMA 20: {get_val('SMA_20'):.2f}\n"
+        payload += f"SMA 50: {get_val('SMA_50'):.2f}\n"
+        payload += f"SMA 200: {get_val('SMA_200'):.2f}\n"
+        payload += f"RSI (14): {get_val('RSI_14'):.2f}\n"
+        payload += f"MACD Line: {get_val('MACD'):.2f} | Signal: {get_val('MACD_SIGNAL'):.2f}\n\n"
     else:
         payload += "Technical data unavailable or asset delisted.\n\n"
         

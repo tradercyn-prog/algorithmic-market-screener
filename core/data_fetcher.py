@@ -70,10 +70,16 @@ def load_local_matrix():
     print("Loading database into RAM...")
     df = pd.read_csv(file_path)
     
-    # Set index to Date for accurate time-series operations
-    if 'Date' in df.columns:
+    # FIX: Check for both lowercase and uppercase 'date' to bridge the pipeline
+    if 'date' in df.columns:
+        df['date'] = pd.to_datetime(df['date'], utc=True)
+        df.set_index('date', inplace=True)
+    elif 'Date' in df.columns:
         df['Date'] = pd.to_datetime(df['Date'], utc=True)
         df.set_index('Date', inplace=True)
+        
+    # FIX: Force the dates into perfect chronological order for VWAP
+    df.sort_index(inplace=True)
         
     return df
 
@@ -88,6 +94,7 @@ def fetch_local_ticker(ticker, master_df):
     # Standardize columns for the analysis engine
     if not ticker_df.empty:
         ticker_df = ticker_df[['open', 'high', 'low', 'close', 'volume']]
+        ticker_df.sort_index(inplace=True) # Extra safety sort
         
     return ticker_df
 

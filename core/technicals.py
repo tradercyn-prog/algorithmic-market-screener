@@ -26,6 +26,13 @@ def apply_indicators(df, rules):
     if "RSI (14)" in needed_indicators: df['RSI_14'] = ta.rsi(df['close'], length=14)
     if "RSI (2)" in needed_indicators: df['RSI_2'] = ta.rsi(df['close'], length=2)
     
+    if any("MACD" in ind for ind in needed_indicators):
+        macd = ta.macd(df['close'])
+        if macd is not None and not macd.empty:
+            df['MACD_LINE'] = macd.iloc[:, 0]
+            df['MACD_HIST'] = macd.iloc[:, 1]
+            df['MACD_SIGNAL'] = macd.iloc[:, 2]
+    
     # --- Volatility & Dynamic Support/Resistance ---
     if "Bollinger Bands (Lower)" in needed_indicators or "Bollinger Bands (Upper)" in needed_indicators:
         bbands = ta.bbands(df['close'], length=20, std=2)
@@ -38,21 +45,62 @@ def apply_indicators(df, rules):
         if sti is not None:
             df['SUPERTREND'] = sti.iloc[:, 0] 
 
-    # --- Candlestick Patterns & Consecutive Streaks ---
-    pattern_mapping = {
-        "Pattern: Doji": "doji", "Pattern: Hammer": "hammer", "Pattern: Inverted Hammer": "invertedhammer",
-        "Pattern: Shooting Star": "shootingstar", "Pattern: Hanging Man": "hangingman", "Pattern: Engulfing": "engulfing",
-        "Pattern: Harami": "harami", "Pattern: Morning Star": "morningstar", "Pattern: Evening Star": "eveningstar",
-        "Pattern: Marubozu": "marubozu", "Pattern: Piercing Line": "piercing", "Pattern: Dark Cloud Cover": "darkcloudcover",
-        "Pattern: 3 White Soldiers": "3whitesoldiers", "Pattern: 3 Black Crows": "3blackcrows"
-    }
-
-    for ui_name, ta_name in pattern_mapping.items():
-        if ui_name in needed_indicators:
-            res = ta.cdl_pattern(df['open'], df['high'], df['low'], df['close'], name=ta_name)
-            if res is not None and not res.empty: 
-                df[f'CDL_{ta_name.upper()}'] = res.iloc[:, 0]
+    # --- Candlestick Patterns (PURE MATH REPLACEMENT) ---
+    pattern_requested = any("Pattern:" in ind for ind in needed_indicators)
     
+    if pattern_requested:
+        O, H, L, C = df['open'], df['high'], df['low'], df['close']
+        O1, H1, L1, C1 = O.shift(1), H.shift(1), L.shift(1), C.shift(1)
+        O2, C2 = O.shift(2), C.shift(2)
+
+        body = (C - O).abs()
+        body1 = (C1 - O1).abs()
+        candle_range = H - L
+        
+        lower_wick = df[['open', 'close']].min(axis=1) - L
+        upper_wick = H - df[['open', 'close']].max(axis=1)
+        
+        is_bull = C > O
+        is_bear = C < O
+        is_bull1 = C1 > O1
+        is_bear1 = C1 < O1
+
+        if "Pattern: Doji" in needed_indicators:
+            df['CDL_DOJI'] = np.where((candle_range > 0) & (body <= (candle_range * 0.1)), 100, 0)
+        if "Pattern: Hammer" in needed_indicators:
+            df['CDL_HAMMER'] = np.where((candle_range > 0) & (lower_wick >= (body * 2)) & (upper_wick <= (candle_range * 0.1)), 100, 0)
+        if "Pattern: Inverted Hammer" in needed_indicators:
+            df['CDL_INVERTEDHAMMER'] = np.where((candle_range > 0) & (upper_wick >= (body * 2)) & (lower_wick <= (candle_range * 0.1)), 100, 0)
+        if "Pattern: Shooting Star" in needed_indicators:
+            df['CDL_SHOOTINGSTAR'] = np.where(is_bear & (candle_range > 0) & (upper_wick >= (body * 2)) & (lower_wick <= (candle_range * 0.1)), 100, 0)
+        if "Pattern: Hanging Man" in needed_indicators:
+            df['CDL_HANGINGMAN'] = np.where(is_bear & (candle_range > 0) & (lower_wick >= (body * 2)) & (upper_wick <= (candle_range * 0.1)), 100, 0)
+        if "Pattern: Engulfing" in needed_indicators:
+            bull_engulf = is_bear1 & is_bull & (C > O1) & (O < C1)
+            bear_engulf = is_bull1 & is_bear & (O > C1) & (C < O1)
+            df['CDL_ENGULFING'] = np.where(bull_engulf | bear_engulf, 100, 0)
+        if "Pattern: Harami" in needed_indicators:
+            bull_harami = is_bear1 & is_bull & (O > C1) & (C < O1)
+            bear_harami = is_bull1 & is_bear & (O < C1) & (C > O1)
+            df['CDL_HARAMI'] = np.where(bull_harami | bear_harami, 100, 0)
+        if "Pattern: Morning Star" in needed_indicators:
+            star_doji = (body1 <= (H1 - L1) * 0.1)
+            df['CDL_MORNINGSTAR'] = np.where(is_bear.shift(2) & star_doji & is_bull & (C > (O2 + C2)/2), 100, 0)
+        if "Pattern: Evening Star" in needed_indicators:
+            star_doji = (body1 <= (H1 - L1) * 0.1)
+            df['CDL_EVENINGSTAR'] = np.where(is_bull.shift(2) & star_doji & is_bear & (C < (O2 + C2)/2), 100, 0)
+        if "Pattern: Marubozu" in needed_indicators:
+            df['CDL_MARUBOZU'] = np.where((body > 0) & (upper_wick <= (body * 0.05)) & (lower_wick <= (body * 0.05)), 100, 0)
+        if "Pattern: Piercing Line" in needed_indicators:
+            df['CDL_PIERCING'] = np.where(is_bear1 & is_bull & (O < L1) & (C > (O1 + C1)/2), 100, 0)
+        if "Pattern: Dark Cloud Cover" in needed_indicators:
+            df['CDL_DARKCLOUDCOVER'] = np.where(is_bull1 & is_bear & (O > H1) & (C < (O1 + C1)/2), 100, 0)
+        if "Pattern: 3 White Soldiers" in needed_indicators:
+            df['CDL_3WHITESOLDIERS'] = np.where(is_bull & is_bull1 & is_bull.shift(2) & (C > C1) & (C1 > C.shift(2)), 100, 0)
+        if "Pattern: 3 Black Crows" in needed_indicators:
+            df['CDL_3BLACKCROWS'] = np.where(is_bear & is_bear1 & is_bear.shift(2) & (C < C1) & (C1 < C.shift(2)), 100, 0)
+
+    # --- Consecutive Streaks ---
     if "Consecutive Bull" in needed_indicators:
         is_bull = (df['close'] > df['open']).astype(int)
         df['CONSEC_BULL'] = is_bull.groupby((is_bull == 0).cumsum()).cumsum()
@@ -70,6 +118,7 @@ def map_indicator_to_column(indicator_name):
         "SMA 10": "SMA_10", "SMA 20": "SMA_20", "SMA 50": "SMA_50", "SMA 200": "SMA_200",
         "EMA 10": "EMA_10", "EMA 20": "EMA_20", "EMA 50": "EMA_50", "EMA 200": "EMA_200",
         "RSI (14)": "RSI_14", "RSI (2)": "RSI_2", "SuperTrend": "SUPERTREND",
+        "MACD Line": "MACD_LINE", "MACD Signal": "MACD_SIGNAL", "MACD Histogram": "MACD_HIST",
         "Bollinger Bands (Lower)": "BB_LOWER", "Bollinger Bands (Upper)": "BB_UPPER",
         "Consecutive Bull": "CONSEC_BULL", "Consecutive Bear": "CONSEC_BEAR",
         
@@ -109,7 +158,6 @@ def evaluate_screener_rules(df, rules):
         # 2. Candlestick Pattern Logic (MOVED TO THE TOP!)
         if "Pattern:" in rule["indicator"]:
             if cond == "==" and str(rule["value"]).lower() == "true":
-                # pandas_ta returns 0 if there is no pattern
                 if pd.isna(ind_val) or ind_val == 0: 
                     passed_all_rules = False
             else:
@@ -117,7 +165,7 @@ def evaluate_screener_rules(df, rules):
             
             if not passed_all_rules: 
                 break
-            continue # Skip the math checks below and move to the next rule!
+            continue 
         
         # 3. Target Math Logic
         target_col = map_indicator_to_column(rule["value"])
@@ -129,7 +177,6 @@ def evaluate_screener_rules(df, rules):
                 compare_val = float(rule["value"])
                 prev_compare_val = compare_val 
             except ValueError:
-                # CRITICAL FIX: Instantly fail the stock instead of skipping the rule!
                 passed_all_rules = False
                 break 
 
