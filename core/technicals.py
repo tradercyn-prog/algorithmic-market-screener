@@ -39,9 +39,19 @@ def apply_indicators(df, rules):
             df['SUPERTREND'] = sti.iloc[:, 0] 
 
     # --- Candlestick Patterns & Consecutive Streaks ---
-    if "Pattern: Hammer" in needed_indicators: df['CDL_HAMMER'] = ta.cdl_pattern(df['open'], df['high'], df['low'], df['close'], name="hammer")
-    if "Pattern: Engulfing" in needed_indicators: df['CDL_ENGULFING'] = ta.cdl_pattern(df['open'], df['high'], df['low'], df['close'], name="engulfing")
-    if "Pattern: Doji" in needed_indicators: df['CDL_DOJI'] = ta.cdl_pattern(df['open'], df['high'], df['low'], df['close'], name="doji")
+    pattern_mapping = {
+        "Pattern: Doji": "doji", "Pattern: Hammer": "hammer", "Pattern: Inverted Hammer": "invertedhammer",
+        "Pattern: Shooting Star": "shootingstar", "Pattern: Hanging Man": "hangingman", "Pattern: Engulfing": "engulfing",
+        "Pattern: Harami": "harami", "Pattern: Morning Star": "morningstar", "Pattern: Evening Star": "eveningstar",
+        "Pattern: Marubozu": "marubozu", "Pattern: Piercing Line": "piercing", "Pattern: Dark Cloud Cover": "darkcloudcover",
+        "Pattern: 3 White Soldiers": "3whitesoldiers", "Pattern: 3 Black Crows": "3blackcrows"
+    }
+
+    for ui_name, ta_name in pattern_mapping.items():
+        if ui_name in needed_indicators:
+            res = ta.cdl_pattern(df['open'], df['high'], df['low'], df['close'], name=ta_name)
+            if res is not None and not res.empty: 
+                df[f'CDL_{ta_name.upper()}'] = res.iloc[:, 0]
     
     if "Consecutive Bull" in needed_indicators:
         is_bull = (df['close'] > df['open']).astype(int)
@@ -61,8 +71,16 @@ def map_indicator_to_column(indicator_name):
         "EMA 10": "EMA_10", "EMA 20": "EMA_20", "EMA 50": "EMA_50", "EMA 200": "EMA_200",
         "RSI (14)": "RSI_14", "RSI (2)": "RSI_2", "SuperTrend": "SUPERTREND",
         "Bollinger Bands (Lower)": "BB_LOWER", "Bollinger Bands (Upper)": "BB_UPPER",
-        "Pattern: Hammer": "CDL_HAMMER", "Pattern: Engulfing": "CDL_ENGULFING", "Pattern: Doji": "CDL_DOJI",
-        "Consecutive Bull": "CONSEC_BULL", "Consecutive Bear": "CONSEC_BEAR"
+        "Consecutive Bull": "CONSEC_BULL", "Consecutive Bear": "CONSEC_BEAR",
+        
+        # Candlestick Map
+        "Pattern: Doji": "CDL_DOJI", "Pattern: Hammer": "CDL_HAMMER", 
+        "Pattern: Inverted Hammer": "CDL_INVERTEDHAMMER", "Pattern: Shooting Star": "CDL_SHOOTINGSTAR", 
+        "Pattern: Hanging Man": "CDL_HANGINGMAN", "Pattern: Engulfing": "CDL_ENGULFING",
+        "Pattern: Harami": "CDL_HARAMI", "Pattern: Morning Star": "CDL_MORNINGSTAR", 
+        "Pattern: Evening Star": "CDL_EVENINGSTAR", "Pattern: Marubozu": "CDL_MARUBOZU", 
+        "Pattern: Piercing Line": "CDL_PIERCING", "Pattern: Dark Cloud Cover": "CDL_DARKCLOUDCOVER",
+        "Pattern: 3 White Soldiers": "CDL_3WHITESOLDIERS", "Pattern: 3 Black Crows": "CDL_3BLACKCROWS"
     }
     return mapping.get(indicator_name, None)
 
@@ -80,14 +98,28 @@ def evaluate_screener_rules(df, rules):
     for rule in rules:
         ind_col = map_indicator_to_column(rule["indicator"])
         
-        # FIX: If the indicator failed to generate (e.g., lack of historical data), instantly fail the stock
+        # FIX: If the indicator failed to generate, fail the stock
         if not ind_col or ind_col not in latest:
             passed_all_rules = False
             break
 
         ind_val = latest[ind_col]
         cond = rule["condition"] 
+
+        # 2. Candlestick Pattern Logic (MOVED TO THE TOP!)
+        if "Pattern:" in rule["indicator"]:
+            if cond == "==" and str(rule["value"]).lower() == "true":
+                # pandas_ta returns 0 if there is no pattern
+                if pd.isna(ind_val) or ind_val == 0: 
+                    passed_all_rules = False
+            else:
+                passed_all_rules = False
+            
+            if not passed_all_rules: 
+                break
+            continue # Skip the math checks below and move to the next rule!
         
+        # 3. Target Math Logic
         target_col = map_indicator_to_column(rule["value"])
         if target_col and target_col in latest:
             compare_val = latest[target_col]
@@ -97,7 +129,7 @@ def evaluate_screener_rules(df, rules):
                 compare_val = float(rule["value"])
                 prev_compare_val = compare_val 
             except ValueError:
-                # FIX: If it can't convert the target to a number, instantly fail the stock
+                # CRITICAL FIX: Instantly fail the stock instead of skipping the rule!
                 passed_all_rules = False
                 break 
 
@@ -106,16 +138,7 @@ def evaluate_screener_rules(df, rules):
             passed_all_rules = False
             break
 
-        # 2. Candlestick Pattern Logic
-        if "Pattern:" in rule["indicator"]:
-            if cond == "==" and str(rule["value"]).lower() == "true":
-                if ind_val == 0: passed_all_rules = False
-            else:
-                passed_all_rules = False
-            if not passed_all_rules: break
-            continue
-
-        # 3. Standard Logic Engine
+        # 4. Standard Logic Engine
         if cond == ">":
             if not (ind_val > compare_val): passed_all_rules = False
         elif cond == "<":
