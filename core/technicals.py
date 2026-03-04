@@ -3,14 +3,10 @@ import pandas_ta as ta
 import numpy as np
 
 def apply_indicators(df, rules):
-    """
-    Dynamically calculates technical indicators required by user-defined rules
-    to optimize performance and computational overhead.
-    """
+    """Dynamically calculates technical indicators required by user-defined rules."""
     if df.empty or len(df) < 50: 
         return df
 
-    # Extract unique indicators from rule parameters
     needed_indicators = set([rule["indicator"] for rule in rules] + [rule["value"] for rule in rules])
 
     # --- Trend (Moving Averages) ---
@@ -42,32 +38,36 @@ def apply_indicators(df, rules):
         if sti is not None:
             df['SUPERTREND'] = sti.iloc[:, 0] 
 
-    # --- Candlestick Patterns ---
+    # --- Candlestick Patterns & Consecutive Streaks ---
     if "Pattern: Hammer" in needed_indicators: df['CDL_HAMMER'] = ta.cdl_pattern(df['open'], df['high'], df['low'], df['close'], name="hammer")
     if "Pattern: Engulfing" in needed_indicators: df['CDL_ENGULFING'] = ta.cdl_pattern(df['open'], df['high'], df['low'], df['close'], name="engulfing")
     if "Pattern: Doji" in needed_indicators: df['CDL_DOJI'] = ta.cdl_pattern(df['open'], df['high'], df['low'], df['close'], name="doji")
+    
+    if "Consecutive Bull" in needed_indicators:
+        is_bull = (df['close'] > df['open']).astype(int)
+        df['CONSEC_BULL'] = is_bull.groupby((is_bull == 0).cumsum()).cumsum()
+        
+    if "Consecutive Bear" in needed_indicators:
+        is_bear = (df['close'] < df['open']).astype(int)
+        df['CONSEC_BEAR'] = is_bear.groupby((is_bear == 0).cumsum()).cumsum()
 
     return df
 
 def map_indicator_to_column(indicator_name):
     """Translates the UI dropdown selection to the DataFrame column name."""
     mapping = {
-        "Price": "close",
-        "Volume": "volume",
-        "VWAP": "VWAP",
+        "Price": "close", "Volume": "volume", "VWAP": "VWAP",
         "SMA 10": "SMA_10", "SMA 20": "SMA_20", "SMA 50": "SMA_50", "SMA 200": "SMA_200",
         "EMA 10": "EMA_10", "EMA 20": "EMA_20", "EMA 50": "EMA_50", "EMA 200": "EMA_200",
-        "RSI (14)": "RSI_14", "RSI (2)": "RSI_2",
-        "SuperTrend": "SUPERTREND",
+        "RSI (14)": "RSI_14", "RSI (2)": "RSI_2", "SuperTrend": "SUPERTREND",
         "Bollinger Bands (Lower)": "BB_LOWER", "Bollinger Bands (Upper)": "BB_UPPER",
-        "Pattern: Hammer": "CDL_HAMMER", "Pattern: Engulfing": "CDL_ENGULFING", "Pattern: Doji": "CDL_DOJI"
+        "Pattern: Hammer": "CDL_HAMMER", "Pattern: Engulfing": "CDL_ENGULFING", "Pattern: Doji": "CDL_DOJI",
+        "Consecutive Bull": "CONSEC_BULL", "Consecutive Bear": "CONSEC_BEAR"
     }
     return mapping.get(indicator_name, None)
 
 def evaluate_screener_rules(df, rules):
-    """
-    Evaluates the dynamically applied indicators against the custom rules.
-    """
+    """Evaluates the applied indicators against the custom rules."""
     df = apply_indicators(df, rules)
     
     if df.empty or len(df) < 2:
@@ -75,23 +75,19 @@ def evaluate_screener_rules(df, rules):
 
     latest = df.iloc[-1]
     prev = df.iloc[-2] 
-    
     passed_all_rules = True
 
     for rule in rules:
         ind_col = map_indicator_to_column(rule["indicator"])
+        
+        # FIX: If the indicator failed to generate (e.g., lack of historical data), instantly fail the stock
         if not ind_col or ind_col not in latest:
-            continue 
+            passed_all_rules = False
+            break
 
         ind_val = latest[ind_col]
-
-        # Translate UI text to mathematical operators
-        cond = rule["condition"]
-        if cond == "Greater Than": cond = ">"
-        elif cond == "Less Than": cond = "<"
-        elif cond == "Equals": cond = "=="
+        cond = rule["condition"] 
         
-        # 1. Determine comparison value (static number or dynamic indicator)
         target_col = map_indicator_to_column(rule["value"])
         if target_col and target_col in latest:
             compare_val = latest[target_col]
@@ -101,17 +97,22 @@ def evaluate_screener_rules(df, rules):
                 compare_val = float(rule["value"])
                 prev_compare_val = compare_val 
             except ValueError:
-                continue 
+                # FIX: If it can't convert the target to a number, instantly fail the stock
+                passed_all_rules = False
+                break 
 
-        # --- SAFETY GUARD: Prevent crashes on missing data (e.g., IPOs lacking a 200 SMA) ---
+        # --- SAFETY GUARD: Prevent NaNs from passing ---
         if pd.isna(ind_val) or pd.isna(compare_val) or pd.isna(prev[ind_col]) or pd.isna(prev_compare_val):
             passed_all_rules = False
             break
 
         # 2. Candlestick Pattern Logic
         if "Pattern:" in rule["indicator"]:
-            if rule["condition"] == "==" and str(rule["value"]).lower() == "true":
+            if cond == "==" and str(rule["value"]).lower() == "true":
                 if ind_val == 0: passed_all_rules = False
+            else:
+                passed_all_rules = False
+            if not passed_all_rules: break
             continue
 
         # 3. Standard Logic Engine

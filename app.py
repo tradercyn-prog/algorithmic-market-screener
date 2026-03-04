@@ -66,19 +66,19 @@ def main():
         presets = {
             "Custom (Manual Entry)": [],
             "Mean Reversion (Oversold)": [
-                {"indicator": "RSI (14)", "condition": "Less Than", "value": "30"},
-                {"indicator": "Price", "condition": "Greater Than", "value": "SMA 200"}
+                {"indicator": "RSI (14)", "condition": "<", "value": "30"},
+                {"indicator": "Price", "condition": ">", "value": "SMA 200"}
             ],
             "The True Golden Cross": [
                 {"indicator": "SMA 50", "condition": "Crosses Above", "value": "SMA 200"}
             ],
             "Momentum Breakout": [
-                {"indicator": "Price", "condition": "Greater Than", "value": "Bollinger Bands (Upper)"},
-                {"indicator": "Volume", "condition": "Greater Than", "value": "SMA 20"}
+                {"indicator": "Price", "condition": ">", "value": "Bollinger Bands (Upper)"},
+                {"indicator": "Volume", "condition": ">", "value": "SMA 20"}
             ],
             "MACD Trend Reversal": [
                 {"indicator": "MACD Line", "condition": "Crosses Above", "value": "MACD Signal"},
-                {"indicator": "Price", "condition": "Greater Than", "value": "VWAP"}
+                {"indicator": "Price", "condition": ">", "value": "VWAP"}
             ]
         }
         
@@ -109,7 +109,7 @@ def main():
 
         # 2. Function to inject a new empty rule row
         def add_rule():
-            st.session_state.scan_rules.append({"indicator": "Price", "condition": "Greater Than", "value": "SMA 200"})
+            st.session_state.scan_rules.append({"indicator": "Price", "condition": ">", "value": "SMA 200"})
 
         # 3. Render the existing rules dynamically using the Key Rotation
         rules_to_delete = []
@@ -131,7 +131,8 @@ def main():
             "Pattern: Shooting Star", "Pattern: Hanging Man", "Pattern: Engulfing",
             "Pattern: Harami", "Pattern: Morning Star", "Pattern: Evening Star",
             "Pattern: Marubozu", "Pattern: Piercing Line", "Pattern: Dark Cloud Cover",
-            "Pattern: 3 White Soldiers", "Pattern: 3 Black Crows"
+            "Pattern: 3 White Soldiers", "Pattern: 3 Black Crows",
+            "Consecutive Bull", "Consecutive Bear"
         ]
         
         # Grab the current rotation key
@@ -147,15 +148,11 @@ def main():
                     key=f"ind_{i}_{reset_id}", label_visibility="collapsed"
                 )
             with col2:
-                readable_conditions = ["Greater Than", "Less Than", "Equals", "Crosses Above", "Crosses Below"]
-                current_cond = rule["condition"]
-                if current_cond == ">": current_cond = "Greater Than"
-                if current_cond == "<": current_cond = "Less Than"
-                if current_cond == "==": current_cond = "Equals"
+                readable_conditions = [">", "<", "==", "Crosses Above", "Crosses Below"]
                 
                 rule["condition"] = st.selectbox(
                     f"Cond_{i}", readable_conditions, 
-                    index=readable_conditions.index(current_cond) if current_cond in readable_conditions else 0,
+                    index=readable_conditions.index(rule["condition"]) if rule["condition"] in readable_conditions else 0,
                     key=f"cond_{i}_{reset_id}", label_visibility="collapsed"
                 )
             with col3:
