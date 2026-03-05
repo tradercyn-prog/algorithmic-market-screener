@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import time
+import gc
 import plotly.graph_objects as go
 from dotenv import load_dotenv
 from components.ai_analyzer import generate_deep_dive
@@ -348,6 +349,9 @@ def main():
             
         status_text.text("Scan Complete.")
 
+        # --- EXPLICIT RAM FLUSH ---
+        gc.collect()
+
     # --- DISPLAY RESULTS ---
     if st.session_state.passed_tickers:
         st.markdown("### FILTER RESULTS")
@@ -455,26 +459,11 @@ def main():
                     # Fetch the colors for the current theme, or use default
                     theme_colors = color_map.get(theme_choice, color_map["default"])
 
-                    # Force calculate standard MAs for the visual chart
-                    chart_df['SMA_20'] = chart_df['close'].rolling(window=20).mean()
-                    chart_df['SMA_50'] = chart_df['close'].rolling(window=50).mean()
-                    chart_df['SMA_200'] = chart_df['close'].rolling(window=200).mean()
-
                     # 2. Plot the main Candlesticks
                     fig = go.Figure(data=[go.Candlestick(
                         x=chart_df.index, open=chart_df['open'], high=chart_df['high'],
                         low=chart_df['low'], close=chart_df['close'], name="Price"
                     )])
-        
-                    # 3. Add the Moving Average lines
-                    colors = {20: '#00F0FF', 50: '#FFB000', 200: '#FF003C'} 
-                    for ma, color in colors.items():
-                        if f'SMA_{ma}' in chart_df.columns:
-                            fig.add_trace(go.Scatter(
-                                x=chart_df.index, y=chart_df[f'SMA_{ma}'], 
-                                mode='lines', name=f'SMA {ma}', 
-                                line=dict(color=color, width=1.5)
-                            ))
                     
                     # 4. DYNAMIC OVERLAYS
                     chart_df = apply_indicators(chart_df, st.session_state.scan_rules)
