@@ -45,6 +45,31 @@ def apply_indicators(df, rules):
         if sti is not None:
             df['SUPERTREND'] = sti.iloc[:, 0] 
 
+    # --- Advanced Volatility & Trend ---
+    if "SuperTrend (10, 1)" in needed_indicators:
+        st1 = ta.supertrend(df['high'], df['low'], df['close'], length=10, multiplier=1.0)
+        if st1 is not None: df['SUPERTREND_10_1'] = st1.iloc[:, 0]
+        
+    if "SuperTrend (11, 2)" in needed_indicators:
+        st2 = ta.supertrend(df['high'], df['low'], df['close'], length=11, multiplier=2.0)
+        if st2 is not None: df['SUPERTREND_11_2'] = st2.iloc[:, 0]
+        
+    if "SuperTrend (12, 3)" in needed_indicators:
+        st3 = ta.supertrend(df['high'], df['low'], df['close'], length=12, multiplier=3.0)
+        if st3 is not None: df['SUPERTREND_12_3'] = st3.iloc[:, 0]
+
+    # --- Momentum Confluence ---
+    if "ADX (14)" in needed_indicators:
+        adx = ta.adx(df['high'], df['low'], df['close'], length=14)
+        if adx is not None and not adx.empty:
+            df['ADX_14'] = adx.iloc[:, 0] # We only need the main ADX strength line
+            
+    if "StochRSI %K" in needed_indicators or "StochRSI %D" in needed_indicators:
+        stoch = ta.stochrsi(df['close'], length=14, rsi_length=14, k=3, d=3)
+        if stoch is not None and not stoch.empty:
+            df['STOCHRSI_K'] = stoch.iloc[:, 0]
+            df['STOCHRSI_D'] = stoch.iloc[:, 1]        
+
     # --- Candlestick Patterns (PURE MATH REPLACEMENT) ---
     pattern_requested = any("Pattern:" in ind for ind in needed_indicators)
     
@@ -118,6 +143,9 @@ def map_indicator_to_column(indicator_name):
         "SMA 10": "SMA_10", "SMA 20": "SMA_20", "SMA 50": "SMA_50", "SMA 200": "SMA_200",
         "EMA 10": "EMA_10", "EMA 20": "EMA_20", "EMA 50": "EMA_50", "EMA 200": "EMA_200",
         "RSI (14)": "RSI_14", "RSI (2)": "RSI_2", "SuperTrend": "SUPERTREND",
+        "SuperTrend (10, 1)": "SUPERTREND_10_1", "SuperTrend (11, 2)": "SUPERTREND_11_2", 
+        "SuperTrend (12, 3)": "SUPERTREND_12_3", "ADX (14)": "ADX_14", 
+        "StochRSI %K": "STOCHRSI_K", "StochRSI %D": "STOCHRSI_D",
         "MACD Line": "MACD_LINE", "MACD Signal": "MACD_SIGNAL", "MACD Histogram": "MACD_HIST",
         "Bollinger Bands (Lower)": "BB_LOWER", "Bollinger Bands (Upper)": "BB_UPPER",
         "Consecutive Bull": "CONSEC_BULL", "Consecutive Bear": "CONSEC_BEAR",

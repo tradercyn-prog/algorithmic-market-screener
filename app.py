@@ -79,7 +79,17 @@ def main():
             "MACD Trend Reversal": [
                 {"indicator": "MACD Line", "condition": "Crosses Above", "value": "MACD Signal"},
                 {"indicator": "Price", "condition": ">", "value": "VWAP"}
+            ],
+            "Triple SuperTrend Confluence": [
+                {"indicator": "Price", "condition": ">", "value": "10"},
+                {"indicator": "Price", "condition": ">", "value": "EMA 200"},
+                {"indicator": "Price", "condition": ">", "value": "SuperTrend (10, 1)"},
+                {"indicator": "Price", "condition": ">", "value": "SuperTrend (11, 2)"},
+                {"indicator": "Price", "condition": ">", "value": "SuperTrend (12, 3)"},
+                {"indicator": "ADX (14)", "condition": ">", "value": "25"},
+                {"indicator": "StochRSI %K", "condition": "Crosses Above", "value": "20"}
             ]
+
         }
         
         selected_preset = st.selectbox("Load Playbook Setup:", list(presets.keys()), label_visibility="collapsed")
@@ -116,6 +126,11 @@ def main():
         
         # List of available indicators
         available_indicators = [
+            "Price", "Volume", "VWAP",
+            "SMA 10", "SMA 20", "SMA 50", "SMA 200",
+            "EMA 10", "EMA 20", "EMA 50", "EMA 200",
+            "SuperTrend", "SuperTrend (10, 1)", "SuperTrend (11, 2)", "SuperTrend (12, 3)", 
+            "ADX (14)", "StochRSI %K", "StochRSI %D",
             "Price", "Volume", "VWAP",
             "SMA 10", "SMA 20", "SMA 50", "SMA 200",
             "EMA 10", "EMA 20", "EMA 50", "EMA 200",
